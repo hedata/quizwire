@@ -1,0 +1,52 @@
+<div class="landing landing_fullscreen">
+
+  <div class="login_center">
+    <div class="middle_center">
+      <div>
+        <h1 style="color:white;text-align:center" translate>WELCOME</h1>
+        <h3 style="color:white;text-align:center">Please tell me who you are:</h3>
+
+        <form style="max-width:300px;margin:0 auto" (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+          <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
+            Name or password incorrect.
+          </div>
+          <div class="form-group">
+            <label class="d-block">
+              <input type="text" class="form-control" formControlName="username" autocomplete="username"
+                     [placeholder]="'Name' | translate"/>
+              <span hidden translate>Name</span>
+              <small [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
+                     class="text-danger" translate>
+                Name is required
+              </small>
+            </label>
+            <!--
+            <label class="d-block">
+              <input type="password" class="form-control" formControlName="password" autocomplete="current-password"
+                     [placeholder]="'Password' | translate" required/>
+              <span hidden translate>Password</span>
+              <small [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
+                     class="text-danger" translate>
+                Password is required
+              </small>
+            </label>
+            -->
+            <!--
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" formControlName="remember"/>
+                <span translate>Remember me</span>
+              </label>
+            </div>
+            -->
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
+            <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+            <span translate>Lets Go</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

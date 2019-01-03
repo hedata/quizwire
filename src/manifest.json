@@ -1,0 +1,14 @@
+{
+  "name": "Reboting",
+  "short_name": "Reboting",
+  "theme_color": "#488aff",
+  "background_color": "#488aff",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/app_icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
