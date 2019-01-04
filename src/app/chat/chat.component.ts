@@ -108,7 +108,7 @@ export class ChatComponent implements OnInit {
       userId: this.userCred.token,
       queryText: this.chatMessage
     });
-    console.log('response: ', resp);
+    //console.log('response: ', resp);
     this.inputDisabled = false;
     this.chatMessage = '';
     this.parseBotResponse(resp);
