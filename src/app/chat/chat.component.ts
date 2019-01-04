@@ -75,6 +75,18 @@ export class ChatComponent implements OnInit {
         this.quickreplies = message.quickReplies.quickReplies;
       }
     }
+    if(messages.length==0) {
+      //we may have some knowledge part that answers this message
+      if(responseBody.queryResult.knowledgeAnswers && responseBody.queryResult.knowledgeAnswers.answers && responseBody.queryResult.knowledgeAnswers.answers.length>0) {
+        for(const answer of responseBody.queryResult.knowledgeAnswers.answers) {
+          this.chatMessages.push({
+            user: 'bot',
+            type: 'text',
+            message: answer.answer
+          });
+        }
+      }
+    }
 
     try {
       setTimeout(() => {
@@ -96,8 +108,7 @@ export class ChatComponent implements OnInit {
       userId: this.userCred.token,
       queryText: this.chatMessage
     });
-
-    //console.log('response: ', resp);
+    console.log('response: ', resp);
     this.inputDisabled = false;
     this.chatMessage = '';
     this.parseBotResponse(resp);

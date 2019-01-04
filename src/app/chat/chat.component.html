@@ -13,7 +13,8 @@
           </ng-container>
           <ng-container *ngIf="message.type==='card'">
             <div class="messageBlock">
-            <!--<p>{{message.message.title}}</p>-->
+            <p *ngIf="message.message.title" >{{message.message.title}}</p>
+            <p *ngIf="message.message.subtitle">{{message.message.subtitle}}</p>
             <img class="imagemessage" src="{{message.message.imageUri}}" />
             <a *ngFor="let messageButton of message.message.buttons"
                 target ="_blank"
