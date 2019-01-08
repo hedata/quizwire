@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "build": "npm run env -s && ng build --prod --aot",
+    "build": "npm run env -s && ng build --prod --aot --output-hashing none",
     "start": "npm run env -s && ng serve --host 0.0.0.0 --port 4200 --aot --proxy-config proxy.conf.js",
     "servesw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
