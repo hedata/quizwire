@@ -95,6 +95,12 @@ export class ChatComponent implements OnInit {
     } catch (err) {}
   };
 
+  public rewriteHttpToHttps = (text:string) => {
+    if(!text) return text;
+    return text.replace(/^http:\/\//i, 'https://');
+  }
+
+
   public queryBot = async () => {
     this.inputDisabled = true;
     this.chatMessages.push({

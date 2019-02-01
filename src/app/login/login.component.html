@@ -5,7 +5,7 @@
       <div>
         <h1 style="color:white;text-align:center" translate>WELCOME</h1>
         <h3 style="color:white;text-align:center">Get news outside your bubble!</h3>
-
+        <h5 style="color:white;text-align:center">powered by <a style ="color:white" target ="_blank" href='https://newsapi.org'>NewsAPI.org</a></h5>
         <form style="max-width:300px;margin:0 auto" (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
           <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
             Name or password incorrect.

@@ -15,7 +15,7 @@
             <div class="messageBlock">
             <p *ngIf="message.message.title" >{{message.message.title}}</p>
             <p *ngIf="message.message.subtitle">{{message.message.subtitle}}</p>
-            <img class="imagemessage" src="{{message.message.imageUri}}" />
+            <img class="imagemessage" src="{{rewriteHttpToHttps(message.message.imageUri)}}" />
             <a *ngFor="let messageButton of message.message.buttons"
                 target ="_blank"
                 href ="{{messageButton.postback}}" class="linkmessage">
@@ -24,7 +24,7 @@
             </div>
           </ng-container>
           <ng-container *ngIf="message.type==='image'">
-              <img class="imagemessage" src="{{message.message.imageUri}}" atl="" />
+              <img class="imagemessage" src="{{rewriteHttpToHttps(message.message.imageUri)}}" atl="" />
           </ng-container>
         </li>
       </ng-container>
