@@ -8,7 +8,7 @@
 }
 
 .landing {
-  background-image: url(../../assets/splash_earth.jpg);
+  background-image: url(../../assets/clouds.jpg);
   height: 100vh;
   background-size: cover;
   background-position: 50% 50%;
@@ -31,6 +31,7 @@
 }
 
 .quickreply_list {
+  background-color:  rgba(0, 0, 0, 0.2);
   display: block;
   width: 100%;
   max-width: 600px;
@@ -52,9 +53,9 @@
 
 //messages
 .message_container {
-  height: auto;
-  min-height: calc(100% - 93px);
-  max-height: calc(100% - 93px);
+  height: calc(100% - 107px);
+  //min-height: calc(100% - 93px);
+  //max-height: calc(100% - 93px);
   width: 100%;
   max-width: 600px;
   overflow-y: scroll;
