@@ -24,27 +24,27 @@
   right: 0;
 }
 .input_container {
-  max-width: 600px;
+  max-width: 780px;
   padding-left: 3px;
   padding-right: 3px;
   margin: auto;
 }
 
 .quickreply_list {
-  background-color:  rgba(0, 0, 0, 0.2);
+  //background-color:  rgba(0, 0, 0, 0.2);
   display: block;
   width: 100%;
-  max-width: 600px;
-  padding-left: 6px;
-  padding-right: 6px;
-  margin: auto;
+  max-width: 780px;
+  //padding-left: 6px;
+  //padding-right: 6px;
+  //margin: auto;
   position: relative;
-  white-space: nowrap;
+  //white-space: nowrap;
   overflow-x: auto;
 }
 //scrollbar
 .quickreply_list::-webkit-scrollbar {
-  width: 8px;
+  height: 8px;
   background: transparent;
 }
 .quickreply_list::-webkit-scrollbar-thumb {
@@ -53,11 +53,11 @@
 
 //messages
 .message_container {
-  height: calc(100% - 107px);
+  height: calc(100% - 48px);
   //min-height: calc(100% - 93px);
   //max-height: calc(100% - 93px);
   width: 100%;
-  max-width: 600px;
+  max-width: 780px;
   overflow-y: scroll;
   overflow-x: hidden;
   padding-left: 3px;

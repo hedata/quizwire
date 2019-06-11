@@ -31,10 +31,16 @@
       <li #chatEnd></li>
     </ul>
 
-  </div>
 
-  <div class="botfooter" novalidate>
     <div  class="quickreply_list">
+      <button
+              *ngIf="configModel.userprofile"
+              class="btn btn-info"
+              type="button"
+              style="display: inline;margin:3px;"
+              (click)="logout()">
+        Logout
+    </button>
       <button *ngFor="let reply of quickreplies" class="btn btn-info"
               type="button"
               style="display: inline;margin:3px;"
@@ -45,15 +51,15 @@
       </button>
     </div>
 
-    <div  class="quickreply_list" *ngIf="configModel.userprofile">
-      <!-- user profile functions -->
-        <button class="btn btn-info"
-                type="button"
-                style="display: inline;margin:3px;"
-                (click)="logout()">
-          Logout
-      </button>
+  </div>
+
+  <div class="botfooter" novalidate>
+
+    <!--
+    <div  class="quickreply_list">
+
     </div>
+    -->
     <div  class="input_container">
       <div class="input-group input-group-lg chat_input">
           <input
