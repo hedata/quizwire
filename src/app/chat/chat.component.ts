@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef , NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
@@ -27,7 +27,12 @@ export class ChatComponent implements OnInit {
   public inputDisabled = false;
   public chatMessages = <any>[];
 
-  constructor(private dataService: DataService, private authService: AuthenticationService, private router: Router, private _ngZone: NgZone) {}
+  constructor(
+    private dataService: DataService,
+    private authService: AuthenticationService,
+    private router: Router,
+    private _ngZone: NgZone
+  ) {}
 
   async ngOnInit() {
     this.userCred = this.authService.credentials;
@@ -75,10 +80,14 @@ export class ChatComponent implements OnInit {
         this.quickreplies = message.quickReplies.quickReplies;
       }
     }
-    if(messages.length==0) {
+    if (messages.length == 0) {
       //we may have some knowledge part that answers this message
-      if(responseBody.queryResult.knowledgeAnswers && responseBody.queryResult.knowledgeAnswers.answers && responseBody.queryResult.knowledgeAnswers.answers.length>0) {
-        for(const answer of responseBody.queryResult.knowledgeAnswers.answers) {
+      if (
+        responseBody.queryResult.knowledgeAnswers &&
+        responseBody.queryResult.knowledgeAnswers.answers &&
+        responseBody.queryResult.knowledgeAnswers.answers.length > 0
+      ) {
+        for (const answer of responseBody.queryResult.knowledgeAnswers.answers) {
           this.chatMessages.push({
             user: 'bot',
             type: 'text',
@@ -95,11 +104,10 @@ export class ChatComponent implements OnInit {
     } catch (err) {}
   };
 
-  public rewriteHttpToHttps = (text:string) => {
-    if(!text) return text;
+  public rewriteHttpToHttps = (text: string) => {
+    if (!text) return text;
     return text.replace(/^http:\/\//i, 'https://');
-  }
-
+  };
 
   public queryBot = async () => {
     this.inputDisabled = true;
@@ -165,11 +173,11 @@ export class ChatComponent implements OnInit {
 
   private commands_record = {
     '*val': (val: any) => {
-        this._ngZone.run(() => {
-          console.log('command start');
-          this.chatMessage = val;
-          this.queryBot();
-        });
+      this._ngZone.run(() => {
+        console.log('command start');
+        this.chatMessage = val;
+        this.queryBot();
+      });
     }
   };
 }
