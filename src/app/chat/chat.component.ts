@@ -117,6 +117,10 @@ export class ChatComponent implements OnInit {
       user: this.userCred.token,
       message: chatMessage
     });
+    //adding max cache
+    if(this.chatMessages.length>20) {
+      this.chatMessages.shift();
+    }
     setTimeout(() => {
       this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 10);
