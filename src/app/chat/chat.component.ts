@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
   async ngOnInit() {
     this.userCred = this.authService.credentials;
     //console.log('creds ', this.userCred);
-    this.chatMessage = 'What can you do?';
+    this.chatMessage = 'Quiz';
     this.queryBot();
     if (!annyang) {
       console.log('Recording not supported!');
@@ -110,21 +110,23 @@ export class ChatComponent implements OnInit {
   };
 
   public queryBot = async () => {
+    const chatMessage = this.chatMessage;
+    this.chatMessage = '';
     this.inputDisabled = true;
     this.chatMessages.push({
       user: this.userCred.token,
-      message: this.chatMessage
+      message: chatMessage
     });
     setTimeout(() => {
       this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 10);
     const resp = await this.dataService.queryBot({
       userId: this.userCred.token,
-      queryText: this.chatMessage
+      queryText: chatMessage
     });
     //console.log('response: ', resp);
     this.inputDisabled = false;
-    this.chatMessage = '';
+
     this.parseBotResponse(resp);
   };
 

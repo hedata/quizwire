@@ -80,7 +80,7 @@
   float: left;
   margin: 5px 15px 0px 15px;
   width: calc(100% - 25px);
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 
 .message_container ul {
@@ -156,4 +156,9 @@
   width: 100%;
   line-height: 130%;
   float: right;
+}
+
+//make button text a little bit bigger
+.btn {
+  font-size: 1.1em;
 }

@@ -3,7 +3,7 @@
     <ul>
       <ng-container *ngFor="let message of chatMessages">
         <li *ngIf="message.user === userCred.token" class="sent">
-          <img class="profilepic" src="assets/user_image.png" alt="" />
+          <img class="profilepic" src="assets/user_image.svg" alt="" />
           <p>{{message.message}}</p>
         </li>
         <li *ngIf="message.user !== userCred.token"  class="replies">
