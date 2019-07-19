@@ -118,7 +118,7 @@ export class ChatComponent implements OnInit {
       message: chatMessage
     });
     //adding max cache
-    if(this.chatMessages.length>20) {
+    if (this.chatMessages.length > 20) {
       this.chatMessages.shift();
     }
     setTimeout(() => {
@@ -175,6 +175,13 @@ export class ChatComponent implements OnInit {
         console.log(err);
       }
     }
+  };
+  getShareUrl = (url: any) => {
+    if (!url) return '';
+    let retStr = url.replace('https://reboting.com/services/image/', '');
+    retStr = retStr.replace('.png', '');
+    retStr = 'https://reboting.com/highscore/' + retStr;
+    return retStr;
   };
 
   private commands_record = {

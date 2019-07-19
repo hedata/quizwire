@@ -14,7 +14,7 @@ import { ShellModule } from './shell/shell.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { HighscoreModule } from './highscore/highscore.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     ShellModule,
     ChatModule,
     LoginModule,
+    HighscoreModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

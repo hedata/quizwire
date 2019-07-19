@@ -79,9 +79,9 @@ export class AuthenticationService {
   isAuthenticated(): boolean {
     //autmatic logged in
     //console.log("[IsAuthenticated]",this.credentials);
-    if(!this.credentials) {
+    if (!this.credentials) {
       const data = {
-        username: "Hungry badger",
+        username: 'Hungry badger',
         token: this.guid()
       };
       this.setCredentials(data, true);

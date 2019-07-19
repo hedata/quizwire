@@ -4,72 +4,83 @@
       <ng-container *ngFor="let message of chatMessages">
         <li *ngIf="message.user === userCred.token" class="sent">
           <img class="profilepic" src="assets/user_image.svg" alt="" />
-          <p>{{message.message}}</p>
+          <p>{{ message.message }}</p>
         </li>
-        <li *ngIf="message.user !== userCred.token"  class="replies">
-            <img class="profilepic" src="assets/app_icon.png" alt="" />
-          <ng-container *ngIf="message.type==='text'">
-            <p>{{message.message}}</p>
+        <li *ngIf="message.user !== userCred.token" class="replies">
+          <img class="profilepic" src="assets/app_icon.png" alt="" />
+          <ng-container *ngIf="message.type === 'text'">
+            <p>{{ message.message }}</p>
           </ng-container>
-          <ng-container *ngIf="message.type==='card'">
+          <ng-container *ngIf="message.type === 'card'">
             <div class="messageBlock">
-            <p *ngIf="message.message.title" >{{message.message.title}}</p>
-            <p *ngIf="message.message.subtitle">{{message.message.subtitle}}</p>
-            <img class="imagemessage" src="{{rewriteHttpToHttps(message.message.imageUri)}}" />
-            <a *ngFor="let messageButton of message.message.buttons"
-                target ="_blank"
-                href ="{{messageButton.postback}}" class="linkmessage">
-                {{messageButton.text}}
-            </a>
+              <p *ngIf="message.message.title">{{ message.message.title }}</p>
+              <p *ngIf="message.message.subtitle">{{ message.message.subtitle }}</p>
+              <img class="imagemessage" src="{{ rewriteHttpToHttps(message.message.imageUri) }}" />
+              <ng-container
+                *ngIf="
+                  message.message.imageUri && message.message.imageUri.includes('https://reboting.com/services/image')
+                "
+              >
+              </ng-container>
+              <a
+                *ngFor="let messageButton of message.message.buttons"
+                target="_blank"
+                href="{{ messageButton.postback }}"
+                class="linkmessage"
+              >
+                {{ messageButton.text }}
+              </a>
             </div>
           </ng-container>
-          <ng-container *ngIf="message.type==='image'">
-              <img class="imagemessage" src="{{rewriteHttpToHttps(message.message.imageUri)}}" atl="" />
+          <ng-container *ngIf="message.type === 'image'">
+            <img class="imagemessage" src="{{ rewriteHttpToHttps(message.message.imageUri) }}" atl="" />
           </ng-container>
         </li>
       </ng-container>
       <li #chatEnd></li>
     </ul>
 
-
-    <div  class="quickreply_list">
+    <div class="quickreply_list">
       <button
-              *ngIf="configModel.userprofile"
-              class="btn btn-info"
-              type="button"
-              style="display: inline;margin:3px;"
-              (click)="logout()">
+        *ngIf="configModel.userprofile"
+        class="btn btn-info"
+        type="button"
+        style="display: inline;margin:3px;"
+        (click)="logout()"
+      >
         Logout
-    </button>
-      <button *ngFor="let reply of quickreplies" class="btn btn-info"
-              type="button"
-              style="display: inline;margin:3px;"
-              [disabled]="inputDisabled"
-              type="button"
-              (click)="onQuickReply(reply)">
-        {{reply}}
+      </button>
+      <button
+        *ngFor="let reply of quickreplies"
+        class="btn btn-info"
+        type="button"
+        style="display: inline;margin:3px;"
+        [disabled]="inputDisabled"
+        type="button"
+        (click)="onQuickReply(reply)"
+      >
+        {{ reply }}
       </button>
     </div>
-
   </div>
 
   <div class="botfooter" novalidate>
-
     <!--
     <div  class="quickreply_list">
 
     </div>
     -->
-    <div  class="input_container">
+    <div class="input_container">
       <div class="input-group input-group-lg chat_input">
-          <input
-              class="form-control"
-              type="text"
-              name="'chatMessage'"
-              placeholder="Chat with Reboting"
-              (keyup.enter)="queryBot()"
-              autocomplete="off"
-              [(ngModel)]="chatMessage">
+        <input
+          class="form-control"
+          type="text"
+          name="'chatMessage'"
+          placeholder="Chat with Reboting"
+          (keyup.enter)="queryBot()"
+          autocomplete="off"
+          [(ngModel)]="chatMessage"
+        />
         <!--- Buttons for
         [disabled]="inputDisabled"
             record
@@ -77,27 +88,32 @@
             user profile
         -->
 
-          <button style="max-width:50px" *ngIf="!configModel.autorecord && configModel.recordsupported" class="btn btn-success form-control"
-                  type="checkbox"
-                  name="autoRecord"
-                  [(ngModel)]="configModel.recording"
-                  title="Record Input"
-                  [disabled]="inputDisabled"
-                  (click)="onClickRecord()"
-                  ngDefaultControl
-                  btnCheckbox
-                  >
-            <i class="fa fa-microphone" aria-hidden="true"></i>
-          </button>
-          <button  style="max-width:50px" class="btn btn-success form-control"
-                     name="userProfile"
-                     type="button"
-                     title="User"
-                     (click)="toggleProfile()"
-                     ngDefaultControl
-                     >
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </button>
+        <button
+          style="max-width:50px"
+          *ngIf="!configModel.autorecord && configModel.recordsupported"
+          class="btn btn-success form-control"
+          type="checkbox"
+          name="autoRecord"
+          [(ngModel)]="configModel.recording"
+          title="Record Input"
+          [disabled]="inputDisabled"
+          (click)="onClickRecord()"
+          ngDefaultControl
+          btnCheckbox
+        >
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+        <button
+          style="max-width:50px"
+          class="btn btn-success form-control"
+          name="userProfile"
+          type="button"
+          title="User"
+          (click)="toggleProfile()"
+          ngDefaultControl
+        >
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </div>
