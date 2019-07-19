@@ -21,6 +21,26 @@
                   message.message.imageUri && message.message.imageUri.includes('https://reboting.com/services/image')
                 "
               >
+                <a
+                  href="http://www.facebook.com/sharer.php?u={{ getShareUrl(message.message.imageUri) }}"
+                  target="_blank"
+                >
+                  <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                </a>
+                <a
+                  href="http://reddit.com/submit?url={{ getShareUrl(message.message.imageUri) }}&amp;title=Highscore!"
+                  target="_blank"
+                >
+                  <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+                </a>
+                <a
+                  href="https://twitter.com/share?url={{
+                    getShareUrl(message.message.imageUri)
+                  }}&amp;text=Highscore!&amp;hashtags=reboting"
+                  target="_blank"
+                >
+                  <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                </a>
               </ng-container>
               <a
                 *ngFor="let messageButton of message.message.buttons"
