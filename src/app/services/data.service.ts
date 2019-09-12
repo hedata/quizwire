@@ -8,4 +8,8 @@ export class DataService {
   queryBot(context: any): Promise<any> {
     return this.httpClient.post('/services/chat', context).toPromise();
   }
+
+  searchWikiData(context:any):Promise<any> {
+    return this.httpClient.post('/services/search/wikidata', context).toPromise();
+  }
 }

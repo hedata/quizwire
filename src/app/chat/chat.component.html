@@ -1,5 +1,5 @@
-<div class="landing landing_fullscreen">
-  <div class="message_container">
+<div [ngClass]="{ landing : open , landing_fullscreen : open, onlychatIcon: !open }">
+  <div *ngIf="open"  class="message_container">
     <ul>
       <ng-container *ngFor="let message of chatMessages">
         <li *ngIf="message.user === userCred.token" class="sent">
@@ -92,7 +92,7 @@
     -->
     <div class="input_container">
       <div class="input-group input-group-lg chat_input">
-        <input
+        <input *ngIf="open"
           class="form-control"
           type="text"
           name="'chatMessage'"
@@ -110,7 +110,7 @@
 
         <button
           style="max-width:50px"
-          *ngIf="!configModel.autorecord && configModel.recordsupported"
+          *ngIf="!configModel.autorecord && configModel.recordsupported && open"
           class="btn btn-success form-control"
           type="checkbox"
           name="autoRecord"
@@ -124,6 +124,7 @@
           <i class="fa fa-microphone" aria-hidden="true"></i>
         </button>
         <button
+        *ngIf="open"
           style="max-width:50px"
           class="btn btn-success form-control"
           name="userProfile"
@@ -133,6 +134,29 @@
           ngDefaultControl
         >
           <i class="fa fa-user" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="open"
+          style="max-width:50px"
+          class="btn btn-success form-control"
+          name="chat"
+          type="button"
+          title="Chat"
+          (click)="toggleChat()"
+          ngDefaultControl
+        >
+          <i class="fa fa-comments" aria-hidden="true"></i>
+        </button>
+        <button *ngIf="!open"
+          class="btn btn-success form-control"
+          name="chat"
+          type="button"
+          title="Chat with reboting"
+          style="padding:10px"
+          (click)="toggleChat()"
+          ngDefaultControl
+        >
+          <i class="fa fa-comments" aria-hidden="true"></i>
+
         </button>
       </div>
     </div>

@@ -23,6 +23,7 @@ export class AuthenticationService {
   private _credentials: Credentials | null;
 
   constructor() {
+    console.log("[AuthService] Constructor");
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -53,7 +54,7 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
+    console.log("[AuthService] - Login")
     const data = {
       username: context.username,
       token: this.guid()
@@ -80,11 +81,15 @@ export class AuthenticationService {
     //autmatic logged in
     //console.log("[IsAuthenticated]",this.credentials);
     if (!this.credentials) {
+
       const data = {
         username: 'Hungry badger',
         token: this.guid()
       };
       this.setCredentials(data, true);
+      
+      return false;
+
     }
     return !!this.credentials;
   }

@@ -1,0 +1,29 @@
+<div class="landing landing_fullscreen">
+
+  <div class="login_center">
+    <div class="middle_center">
+      <div>
+        <h1 style="color:white;text-align:center;padding:40px" translate>Reboting</h1>
+        <div class="input_container">
+          <div class="input-group input-group-lg chat_input">
+            <input
+              class="form-control"
+              type="text"
+              name="'searchQuery'"
+              placeholder="Rebot anything"
+              (keyup.enter)="searchForQuery(searchQuery)"
+              autocomplete="on"
+              [(ngModel)]="searchQuery"
+            />
+          </div>
+        </div>
+        <div *ngIf="searchResults && searchResults.length>0" class="searchresultcontainer">
+            <div *ngFor="let result of searchResults" class="searchresult" (click)="detailsForEntity(result)">
+              {{result.label}} - {{result.description}}
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

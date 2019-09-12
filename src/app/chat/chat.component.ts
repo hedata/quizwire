@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
-import { DataService } from './data.service';
+import { DataService } from '../services/data.service';
 
 declare var annyang: any;
 
@@ -13,6 +13,8 @@ declare var annyang: any;
 })
 export class ChatComponent implements OnInit {
   @ViewChild('chatEnd') private chatEnd: ElementRef;
+  public open: boolean = false;
+  public startedChat : boolean = false;
   isLoading: boolean;
   userCred: any;
   public quickreplies: Array<string> = [];
@@ -35,16 +37,36 @@ export class ChatComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    console.log("[Chat] Constructor");
     this.userCred = this.authService.credentials;
     //console.log('creds ', this.userCred);
-    this.chatMessage = 'Quiz';
-    this.queryBot();
     if (!annyang) {
       console.log('Recording not supported!');
       this.configModel.recordsupported = false;
     }
     //const respo = await this.dataService.queryBot({ status: "hello World"});
   }
+  toggleChat =()=> {
+    console.log("[Chat Toggle]",this.open)
+    if(!this.open) {
+      if(!this.startedChat) {
+        this.startedChat = true;
+        this.chatMessage = 'What can you do?';
+        this.queryBot();
+      }
+      this.open = true;
+      try {
+        setTimeout(() => {
+          this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      } catch (err) {}
+    } else {
+      this.open = false;
+    }
+
+  }
+
+
   private parseBotResponse = (resp: any) => {
     const responseBody = resp[0];
     const messages = responseBody.queryResult.fulfillmentMessages;
@@ -121,9 +143,11 @@ export class ChatComponent implements OnInit {
     if (this.chatMessages.length > 20) {
       this.chatMessages.shift();
     }
-    setTimeout(() => {
-      this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 10);
+    try {
+      setTimeout(() => {
+        this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 30);
+    } catch (err) {}
     const resp = await this.dataService.queryBot({
       userId: this.userCred.token,
       queryText: chatMessage

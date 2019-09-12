@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { SearchRoutingModule } from './search-routing.module';
+import { SearchComponent } from './search.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
-import { ChatComponent } from './chat.component';
-import { DataService } from '../services/data.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '@app/services/data.service';
 
 @NgModule({
   imports: [
@@ -17,10 +18,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TranslateModule,
     CoreModule,
     SharedModule,
+    SearchRoutingModule,
     FormsModule
   ],
-  declarations: [ChatComponent],
-  exports : [ChatComponent],
+  exports : [SearchComponent],
+  declarations: [SearchComponent],
   providers: [DataService]
 })
-export class ChatModule {}
+export class SearchModule {}

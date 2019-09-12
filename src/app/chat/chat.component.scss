@@ -6,11 +6,18 @@
   box-shadow: 0;
   display: inline;
 }
+.onlychatIcon {
+  width:50px;
+  position:absolute;
+  bottom:0;
+  right:0
+}
 .landing_fullscreen {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  //top: 0;
+  //bottom: 0;
+  //left: 0;
+  min-width: 50%;
   right: 0;
 }
 
@@ -31,7 +38,7 @@
   right: 0;
 }
 .input_container {
-  max-width: 780px;
+  //max-width: 780px;
   padding-left: 3px;
   padding-right: 3px;
   margin: auto;
@@ -41,7 +48,7 @@
   //background-color:  rgba(0, 0, 0, 0.2);
   display: block;
   width: 100%;
-  max-width: 780px;
+  //max-width: 780px;
   //padding-left: 6px;
   //padding-right: 6px;
   //margin: auto;
@@ -64,7 +71,7 @@
   //min-height: calc(100% - 93px);
   //max-height: calc(100% - 93px);
   width: 100%;
-  max-width: 780px;
+  //max-width: 780px;
   overflow-y: scroll;
   overflow-x: hidden;
   padding-left: 3px;

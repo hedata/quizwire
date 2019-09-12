@@ -15,6 +15,7 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HighscoreModule } from './highscore/highscore.module';
+import { SearchModule } from './search/search.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,6 +27,7 @@ import { HighscoreModule } from './highscore/highscore.module';
     CoreModule,
     SharedModule,
     ShellModule,
+    SearchModule,
     ChatModule,
     LoginModule,
     HighscoreModule,
