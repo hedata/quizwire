@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HighscoreModule } from './highscore/highscore.module';
 import { SearchModule } from './search/search.module';
+import { EntityModule } from './entity/entity.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,6 +29,7 @@ import { SearchModule } from './search/search.module';
     SharedModule,
     ShellModule,
     SearchModule,
+    EntityModule,
     ChatModule,
     LoginModule,
     HighscoreModule,

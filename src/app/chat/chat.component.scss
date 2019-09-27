@@ -7,10 +7,10 @@
   display: inline;
 }
 .onlychatIcon {
-  width:50px;
-  position:absolute;
-  bottom:0;
-  right:0
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .landing_fullscreen {
   position: absolute;
@@ -22,12 +22,13 @@
 }
 
 .landing {
-  background-image: url(../../assets/clouds.jpg);
+  //background-image: url(../../assets/clouds.jpg);
   height: 100vh;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: repeat;
-  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  //background-size: cover;
+  //background-position: 50% 50%;
+  //  background-repeat: repeat;
+  //  background-attachment: fixed;
 }
 
 // BOT INPUT

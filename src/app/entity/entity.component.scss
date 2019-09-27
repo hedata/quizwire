@@ -1,18 +1,6 @@
 @import "src/theme/theme-variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 
-.searchresultcontainer {
-  overflow-y: auto;
-  max-height: 200px;
-  position: absolute;
-}
-.searchresult {
-  margin: 5px;
-  padding: 5px;
-  background-color: white;
-  cursor: pointer;
-}
-
 .landing_fullscreen {
   position: absolute;
   top: 0;

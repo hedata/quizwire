@@ -1,0 +1,14 @@
+<div class="landing landing_fullscreen" *ngIf="entityDetails">
+  <h1>{{ entityDetails.labels[lang] }}</h1>
+  <h2>{{ entityDetails.descriptions[lang] }}</h2>
+  <!-- alternatives -->
+  <div class="flex row" style="padding:5px;margin:0">
+    <span style="padding:5px" *ngFor="let alias of entityDetails.aliases[lang]">{{ alias }}</span>
+  </div>
+  <!-- P18 image -->
+  <div *ngIf="entityDetails.claims['wdt:P18']">
+    <div *ngFor="let claim of entityDetails.claims['wdt:P18']">
+      <p18image [lang]="lang" [claim]="claim"></p18image>
+    </div>
+  </div>
+</div>

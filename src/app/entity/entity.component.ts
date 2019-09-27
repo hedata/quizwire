@@ -7,17 +7,18 @@ import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { DataService } from '@app/services/data.service';
 
-const log = new Logger('Login');
+const log = new Logger('Entity');
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-entity',
+  templateUrl: './entity.component.html',
+  styleUrls: ['./entity.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class EntityComponent implements OnInit {
   version: string = environment.version;
-  public searchQuery: String = '';
-  public searchResults: any;
+  public entityId: String = '';
+  public entityDetails: any;
+  public lang: String = 'en';
 
   constructor(
     private router: Router,
@@ -26,22 +27,22 @@ export class SearchComponent implements OnInit {
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
     private dataService: DataService
-  ) {}
+  ) {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.entityId = id;
+  }
 
   ngOnInit() {
-    console.log('[Search] Init');
+    console.log('[Entity] Init');
+    this.getDetails(this.entityId);
   }
 
-  async searchForQuery(searchQuery: String) {
-    console.log('[Search] searching for: ', searchQuery);
-    const response = await this.dataService.searchWikiData({
-      searchQuery: searchQuery
+  async getDetails(id: String) {
+    console.log('[Entity] getting Details for: ', id);
+    const response = await this.dataService.getEntityDetails({
+      id: id
     });
-    this.searchResults = response.search;
-    console.log('[Search] Response: ', response);
-  }
-  detailsForEntity(entity: any) {
-    console.log('[GOTO Entity]', entity);
-    this.router.navigate(['/entity/' + entity.id], { replaceUrl: true });
+    this.entityDetails = response;
+    console.log('[Entity] Response: ', response);
   }
 }
