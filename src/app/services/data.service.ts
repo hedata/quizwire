@@ -10,7 +10,7 @@ export class DataService {
   }
 
   searchWikiData(context: any): Promise<any> {
-    return this.httpClient.post('/services/search/wikidata', context).toPromise();
+    return this.httpClient.post('/services/entity/search', context).toPromise();
   }
   getEntityDetails(context: any): Promise<any> {
     return this.httpClient.post('/services/entity/details', context).toPromise();
