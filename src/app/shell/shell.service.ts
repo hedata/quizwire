@@ -12,7 +12,7 @@ export class Shell {
    * @param routes The routes to add.
    * @return The new route using shell as the base.
    */
-  static childRoutes(routes: Routes): Route {    
+  static childRoutes(routes: Routes): Route {
     return {
       path: '',
       component: ShellComponent,

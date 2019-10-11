@@ -10,17 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [
-    ReactiveFormsModule,
-    NgbModule,
-    CommonModule,
-    TranslateModule,
-    CoreModule,
-    SharedModule,
-    FormsModule
-  ],
+  imports: [ReactiveFormsModule, NgbModule, CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule],
   declarations: [ChatComponent],
-  exports : [ChatComponent],
+  exports: [ChatComponent],
   providers: [DataService]
 })
 export class ChatModule {}

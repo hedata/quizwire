@@ -20,14 +20,12 @@ export function tagMatcher(url: UrlSegment[], group: UrlSegmentGroup, route: Rou
   // };
 
   return { consumed: url, posParams: posParams };
-};
-
+}
 
 const routes: Routes = [
   // Fallback when no prior route is matched
 
-
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

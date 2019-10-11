@@ -21,7 +21,7 @@ import { DataService } from '@app/services/data.service';
     SearchRoutingModule,
     FormsModule
   ],
-  exports : [SearchComponent],
+  exports: [SearchComponent],
   declarations: [SearchComponent],
   providers: [DataService]
 })

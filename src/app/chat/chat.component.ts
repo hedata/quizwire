@@ -14,7 +14,7 @@ declare var annyang: any;
 export class ChatComponent implements OnInit {
   @ViewChild('chatEnd') private chatEnd: ElementRef;
   public open: boolean = false;
-  public startedChat : boolean = false;
+  public startedChat: boolean = false;
   isLoading: boolean;
   userCred: any;
   public quickreplies: Array<string> = [];
@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    console.log("[Chat] Constructor");
+    console.log('[Chat] Constructor');
     this.userCred = this.authService.credentials;
     //console.log('creds ', this.userCred);
     if (!annyang) {
@@ -46,10 +46,10 @@ export class ChatComponent implements OnInit {
     }
     //const respo = await this.dataService.queryBot({ status: "hello World"});
   }
-  toggleChat =()=> {
-    console.log("[Chat Toggle]",this.open)
-    if(!this.open) {
-      if(!this.startedChat) {
+  toggleChat = () => {
+    console.log('[Chat Toggle]', this.open);
+    if (!this.open) {
+      if (!this.startedChat) {
         this.startedChat = true;
         this.chatMessage = 'What can you do?';
         this.queryBot();
@@ -63,9 +63,7 @@ export class ChatComponent implements OnInit {
     } else {
       this.open = false;
     }
-
-  }
-
+  };
 
   private parseBotResponse = (resp: any) => {
     const responseBody = resp[0];

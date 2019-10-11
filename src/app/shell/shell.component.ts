@@ -9,6 +9,6 @@ export class ShellComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log("[Shell]- Init")
+    console.log('[Shell]- Init');
   }
 }
