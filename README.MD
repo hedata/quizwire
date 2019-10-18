@@ -1,5 +1,5 @@
 # Reboting Pwa
-Reimplementation of reboting as chatbot
+Ideas prototyped in a simple framework.
 * angular 7 application with pwa support
 
 # Requirements
@@ -12,7 +12,5 @@ Reimplementation of reboting as chatbot
 - Search input - queries wikidata
 
 # Structure of the application
-
-- we want a chat that is accessible everywhere!
-- we want to navigate via server urls and anchors so
-   when a user shares a url the state of the app is shared
+Since ideas need a quick place a page that imlpements that and navigation
+to it is added quickly

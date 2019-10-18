@@ -1,5 +1,4 @@
-<div class="landing landing_fullscreen">
-
+<div *ngIf="isActive" class="landing landing_fullscreen">
   <div class="login_center">
     <div class="middle_center">
       <div>
@@ -17,13 +16,12 @@
             />
           </div>
         </div>
-        <div *ngIf="searchResults && searchResults.length>0" class="searchresultcontainer">
-            <div *ngFor="let result of searchResults" class="searchresult" (click)="detailsForEntity(result)">
-              {{result.label}} - {{result.description}}
-            </div>
+        <div *ngIf="searchResults && searchResults.length > 0" class="searchresultcontainer">
+          <div *ngFor="let result of searchResults" class="searchresult" (click)="detailsForEntity(result)">
+            {{ result.label }} - {{ result.description }}
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

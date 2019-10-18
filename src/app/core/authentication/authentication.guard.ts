@@ -11,12 +11,13 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private router: Router, private authenticationService: AuthenticationService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log('[CheckCanActivate]');
     if (this.authenticationService.isAuthenticated()) {
       return true;
     }
 
-    log.debug('Not authenticated, redirecting and adding redirect url...');
-    this.router.navigate(['/login'], { queryParams: { redirect: state.url }, replaceUrl: true });
+    //log.debug('Not authenticated, redirecting and adding redirect url...');
+    //this.router.navigate(['/login'], { queryParams: { redirect: state.url }, replaceUrl: true });
     return false;
   }
 }

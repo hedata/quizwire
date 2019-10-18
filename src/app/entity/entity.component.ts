@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize, debounce } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { DataService } from '@app/services/data.service';
 const log = new Logger('Entity');
 
 @Component({
-  selector: 'app-entity',
+  selector: 'entity',
   templateUrl: './entity.component.html',
   styleUrls: ['./entity.component.scss']
 })
@@ -20,6 +20,20 @@ export class EntityComponent implements OnInit {
   public entityDetails: any;
   public lang: String = 'en';
 
+  @Input() activeComponentConfig: any;
+  isActive: boolean = false;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.activeComponentConfig.name === 'entity') {
+      console.log('[SettingEntittyActive]');
+      this.isActive = true;
+      this.entityId = this.activeComponentConfig.params[0];
+      this.getDetails(this.entityId);
+    } else {
+      this.isActive = false;
+    }
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,14 +41,10 @@ export class EntityComponent implements OnInit {
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
     private dataService: DataService
-  ) {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.entityId = id;
-  }
+  ) {}
 
   ngOnInit() {
     console.log('[Entity] Init');
-    this.getDetails(this.entityId);
   }
 
   async getDetails(id: String) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, Input, SimpleChanges } from '@angular/core';
 
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
@@ -29,16 +29,35 @@ export class ChatComponent implements OnInit {
   public inputDisabled = false;
   public chatMessages = <any>[];
 
+  @Input() activeComponentConfig: any;
+  public isActive: boolean;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.activeComponentConfig.name === 'chat') {
+      console.log('[SettingChatActive]');
+      this.isActive = true;
+      if (!this.startedChat) {
+        this.startedChat = true;
+        this.chatMessage = 'What can you do?';
+        this.queryBot();
+      }
+    } else {
+      this.isActive = false;
+    }
+  }
+
   constructor(
     private dataService: DataService,
     private authService: AuthenticationService,
     private router: Router,
     private _ngZone: NgZone
-  ) {}
+  ) {
+    console.log('[Chat] Constructor');
+    console.log('Creds', this.authService.credentials);
+    this.userCred = this.authService.credentials;
+  }
 
   async ngOnInit() {
-    console.log('[Chat] Constructor');
-    this.userCred = this.authService.credentials;
     //console.log('creds ', this.userCred);
     if (!annyang) {
       console.log('Recording not supported!');
@@ -57,7 +76,9 @@ export class ChatComponent implements OnInit {
       this.open = true;
       try {
         setTimeout(() => {
-          this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          try {
+            this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (err) {}
         }, 300);
       } catch (err) {}
     } else {
@@ -116,10 +137,11 @@ export class ChatComponent implements OnInit {
         }
       }
     }
-
     try {
       setTimeout(() => {
-        this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        try {
+          this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {}
       }, 300);
     } catch (err) {}
   };
@@ -141,11 +163,12 @@ export class ChatComponent implements OnInit {
     if (this.chatMessages.length > 20) {
       this.chatMessages.shift();
     }
-    try {
-      setTimeout(() => {
+
+    setTimeout(() => {
+      try {
         this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 30);
-    } catch (err) {}
+      } catch (err) {}
+    }, 30);
     const resp = await this.dataService.queryBot({
       userId: this.userCred.token,
       queryText: chatMessage
