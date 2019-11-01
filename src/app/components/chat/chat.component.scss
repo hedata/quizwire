@@ -9,15 +9,17 @@
 
 // BOT INPUT
 .botfooter {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  //position: absolute;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
 }
 .input_container {
   //max-width: 780px;
   padding-left: 3px;
   padding-right: 3px;
+  padding-bottom: 3px;
+  //height:40px;
   margin: auto;
 }
 

@@ -1,9 +1,11 @@
 <div class="mainpage">
 <div class="footer">
+  <div style ="display: flex;justify-content: center;">
+
       <button
       [ngClass]="{ active : activeComponentConfig.name==='chat'}"
         class="btn btn-success form-control"
-        style="width:32%"
+        style="margin:3px;width:25%"
         name="chat"
         type="button"
         title="Chat"
@@ -16,7 +18,7 @@
       <button
       [ngClass]="{ active : activeComponentConfig.name==='search'}"
         class="btn btn-success form-control"
-        style="width:32%"
+        style="margin:3px;width:25%"
         name="compare"
         type="button"
         title="Compare"
@@ -27,9 +29,9 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       </button>
       <button
-        [ngClass]="{ active : activeComponentConfig.name===''}"
+        [ngClass]="{ active : activeComponentConfig.name===''}"        
         class="btn btn-success form-control"
-        style="width:32%"
+        style="margin:3px;width:25%"
         name="chat"
         type="button"
         title="Info"
@@ -39,6 +41,7 @@
         Info
         <i class="fa fa-info" aria-hidden="true"></i>
       </button>
+    </div>
   </div>
 
 <!-- active project -->
