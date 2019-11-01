@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone, Input, SimpleChanges 
 
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
-import { DataService } from '../services/data.service';
+import { DataService } from '@app/services/data.service';
 
 declare var annyang: any;
 
@@ -13,7 +13,6 @@ declare var annyang: any;
 })
 export class ChatComponent implements OnInit {
   @ViewChild('chatEnd') private chatEnd: ElementRef;
-  public open: boolean = false;
   public startedChat: boolean = false;
   isLoading: boolean;
   userCred: any;
@@ -41,6 +40,13 @@ export class ChatComponent implements OnInit {
         this.chatMessage = 'What can you do?';
         this.queryBot();
       }
+      try {
+        setTimeout(() => {
+          try {
+            this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (err) {}
+        }, 300);
+      } catch (err) {}
     } else {
       this.isActive = false;
     }
@@ -65,26 +71,6 @@ export class ChatComponent implements OnInit {
     }
     //const respo = await this.dataService.queryBot({ status: "hello World"});
   }
-  toggleChat = () => {
-    console.log('[Chat Toggle]', this.open);
-    if (!this.open) {
-      if (!this.startedChat) {
-        this.startedChat = true;
-        this.chatMessage = 'What can you do?';
-        this.queryBot();
-      }
-      this.open = true;
-      try {
-        setTimeout(() => {
-          try {
-            this.chatEnd.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } catch (err) {}
-        }, 300);
-      } catch (err) {}
-    } else {
-      this.open = false;
-    }
-  };
 
   private parseBotResponse = (resp: any) => {
     const responseBody = resp[0];

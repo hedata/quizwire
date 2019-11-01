@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighscoreComponent } from './highscore.component';
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule],
-  declarations: [HighscoreComponent]
+  declarations: [HighscoreComponent],
+  exports: [HighscoreComponent],
 })
 export class HighscoreModule {}

@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { ChatComponent } from './chat.component';
-import { DataService } from '../services/data.service';
+import { DataService } from '@app/services/data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

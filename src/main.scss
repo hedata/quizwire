@@ -15,3 +15,16 @@
 
 // Theme customization
 @import "theme/theme";
+
+
+//custom parts
+.componentView {
+  height: calc( 100vh - 40px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  min-width: 50%;
+  width : 100%;
+  right: 0;
+}

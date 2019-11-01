@@ -1,15 +1,15 @@
-<div *ngIf="isActive" class="landing landing_fullscreen">
+<div *ngIf="isActive" class="componentView">
   <div class="login_center">
     <div class="middle_center">
       <div>
-        <h1 style="color:white;text-align:center;padding:40px" translate>Reboting</h1>
+        <h1 style="color:white;text-align:center;padding:40px" translate>First search for something</h1>
         <div class="input_container">
           <div class="input-group input-group-lg chat_input">
             <input
               class="form-control"
               type="text"
               name="'searchQuery'"
-              placeholder="Rebot anything"
+              placeholder="Type here"
               (keyup.enter)="searchForQuery(searchQuery)"
               autocomplete="on"
               [(ngModel)]="searchQuery"

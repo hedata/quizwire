@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shell',
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   public activeComponentConfig: { name: string; params: Array<any> } = { name: undefined, params :[]};
   ngOnInit() {
@@ -15,9 +15,10 @@ export class ShellComponent implements OnInit {
     this.route.url.pipe().subscribe(url => {
       console.log('[Shell] - ', url);
       const activeComponentConfig: any = {
-        name: undefined,
+        name: '',
         params: []
       };
+
       //first url part
       //our base routing is here now
       for (let i = 0; i < url.length; i++) {
@@ -31,5 +32,13 @@ export class ShellComponent implements OnInit {
       this.activeComponentConfig = activeComponentConfig;
       console.log('[Shell] - setting active compoennt ', this.activeComponentConfig);
     });
+  }
+  toggleComponent= (component:string) => {
+    console.log("[Shell] - toggle ",component);
+    if(this.activeComponentConfig.name ===component) {
+      this.router.navigate(['/']);
+    } else {
+      this.router.navigate(['/'+component]);
+    }
   }
 }

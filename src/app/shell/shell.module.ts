@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ShellComponent } from './shell.component';
-import { ChatModule } from '@app/chat/chat.module';
-import { SearchModule } from '@app/search/search.module';
-import { EntityModule } from '@app/entity/entity.module';
+import { ChatModule } from '@app/components/chat/chat.module';
+import { SearchModule } from '@app/components/search/search.module';
+import { EntityModule } from '@app/components/entity/entity.module';
 import { LoginModule } from '@app/login/login.module';
+import { HighscoreModule } from '@app/components/highscore/highscore.module';
+import { HomeModule } from '@app/components/home/home.module';
 
 @NgModule({
   imports: [
@@ -16,10 +18,12 @@ import { LoginModule } from '@app/login/login.module';
     TranslateModule,
     NgbModule,
     RouterModule,
+    LoginModule,
     ChatModule,
-    SearchModule,
     EntityModule,
-    LoginModule
+    SearchModule,
+    HighscoreModule,
+    HomeModule
   ],
   declarations: [ShellComponent]
 })

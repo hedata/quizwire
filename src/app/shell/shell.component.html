@@ -1,8 +1,45 @@
+<div class="footer">
+      <button
+        class="btn btn-success form-control"
+        style="width:33%"
+        name="chat"
+        type="button"
+        title="Info"
+        (click)="toggleComponent('')"
+        ngDefaultControl
+      >
+        Info
+        <i class="fa fa-info" aria-hidden="true"></i>
+      </button>
+      <button
+        class="btn btn-success form-control"
+        style="width:33%"
+        name="chat"
+        type="button"
+        title="Chat"
+        (click)="toggleComponent('chat')"
+        ngDefaultControl
+      >
+        Chat
+        <i class="fa fa-comments" aria-hidden="true"></i>
+      </button>
+      <button
+        class="btn btn-success form-control"
+        style="width:33%"
+        name="compare"
+        type="button"
+        title="Compare"
+        (click)="toggleComponent('search')"
+        ngDefaultControl
+      >
+        Compare
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+  </div>
+
 <!-- active project -->
 <chat [activeComponentConfig]="activeComponentConfig"></chat>
 <search [activeComponentConfig]="activeComponentConfig"></search>
 <entity [activeComponentConfig]="activeComponentConfig"></entity>
-<!-- splash screen -->
-<ng-container *ngIf="!activeComponentConfig.name">
-  HELLO WORLD
-</ng-container>
+<highscore [activeComponentConfig]="activeComponentConfig"></highscore>
+<home [activeComponentConfig]="activeComponentConfig"></home>

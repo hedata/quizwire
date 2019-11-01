@@ -7,7 +7,7 @@ import { EntityComponent } from './entity.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { DataService } from '@app/services/data.service';
-import { Property18_ImageComponent } from '@app/entity/claims/p18_image/p18_image.component';
+import { Property18_ImageComponent } from '@app/components/entity/claims/p18_image/p18_image.component';
 
 @NgModule({
   imports: [ReactiveFormsModule, NgbModule, CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule],

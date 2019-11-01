@@ -6,20 +6,18 @@ import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
 
 @Component({
-  selector: 'app-highscore',
-  templateUrl: './highscore.component.html',
-  styleUrls: ['./highscore.component.scss']
+  selector: 'home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HighscoreComponent implements OnInit {
-  public imageID: string = undefined;
+export class HomeComponent implements OnInit {
   @Input() activeComponentConfig: any;
   isActive: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.activeComponentConfig.name === 'highscore') {
-      console.log('[SettingEntittyActive]');
+    if (this.activeComponentConfig.name === '') {
+      console.log('[Home] - active');
       this.isActive = true;
-      this.imageID = this.activeComponentConfig.params[0];
     } else {
       this.isActive = false;
     }
@@ -31,10 +29,6 @@ export class HighscoreComponent implements OnInit {
     private i18nService: I18nService
   ) {
     //'highscore/:id',
-  }
-
-  gotoPlay() {
-    this.router.navigate(['/'], { replaceUrl: true });
   }
 
   ngOnInit() {}
