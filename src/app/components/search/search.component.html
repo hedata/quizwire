@@ -3,7 +3,7 @@
     <div class="middle_center">
       <div>
         <h1 style="color:white;text-align:center;padding:40px" translate>First search for something</h1>
-        <div class="input_container">
+        <div class="input_container" style="position:relative">
           <div class="input-group input-group-lg chat_input">
             <input
               class="form-control"
@@ -15,12 +15,13 @@
               [(ngModel)]="searchQuery"
             />
           </div>
-        </div>
-        <div *ngIf="searchResults && searchResults.length > 0" class="searchresultcontainer">
-          <div *ngFor="let result of searchResults" class="searchresult" (click)="detailsForEntity(result)">
-            {{ result.label }} - {{ result.description }}
+          <div *ngIf="searchResults && searchResults.length > 0" class="searchresultcontainer">
+            <div *ngFor="let result of searchResults" class="searchresult" (click)="detailsForEntity(result)">
+              {{ result.label }} - {{ result.description }}
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
