@@ -1,18 +1,7 @@
 <div class="mainpage">
 <div class="footer">
       <button
-        class="btn btn-success form-control"
-        style="width:32%"
-        name="chat"
-        type="button"
-        title="Info"
-        (click)="toggleComponent('')"
-        ngDefaultControl
-      >
-        Info
-        <i class="fa fa-info" aria-hidden="true"></i>
-      </button>
-      <button
+      [ngClass]="{ active : activeComponentConfig.name==='chat'}"
         class="btn btn-success form-control"
         style="width:32%"
         name="chat"
@@ -25,6 +14,7 @@
         <i class="fa fa-comments" aria-hidden="true"></i>
       </button>
       <button
+      [ngClass]="{ active : activeComponentConfig.name==='search'}"
         class="btn btn-success form-control"
         style="width:32%"
         name="compare"
@@ -35,6 +25,19 @@
       >
         Compare
         <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+      <button
+        [ngClass]="{ active : activeComponentConfig.name===''}"
+        class="btn btn-success form-control"
+        style="width:32%"
+        name="chat"
+        type="button"
+        title="Info"
+        (click)="toggleComponent('')"
+        ngDefaultControl
+      >
+        Info
+        <i class="fa fa-info" aria-hidden="true"></i>
       </button>
   </div>
 
