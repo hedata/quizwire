@@ -9,11 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ShellComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
-  public activeComponentConfig: { name: string; params: Array<any> };
+  public activeComponentConfig: { name: string; params: Array<any> } = { name: undefined, params :[]};
   ngOnInit() {
     console.log('[Shell]- Init', this.route);
     this.route.url.pipe().subscribe(url => {
-      console.log('[URL] - ', url);
+      console.log('[Shell] - ', url);
       const activeComponentConfig: any = {
         name: undefined,
         params: []
@@ -29,7 +29,7 @@ export class ShellComponent implements OnInit {
         }
       }
       this.activeComponentConfig = activeComponentConfig;
-      console.log('[SettingActiveCompoent]', this.activeComponentConfig);
+      console.log('[Shell] - setting active compoennt ', this.activeComponentConfig);
     });
   }
 }

@@ -1,5 +1,8 @@
-<h1>WELCOME</h1>
-<!-- chart as global component -->
+<!-- active project -->
 <chat [activeComponentConfig]="activeComponentConfig"></chat>
 <search [activeComponentConfig]="activeComponentConfig"></search>
 <entity [activeComponentConfig]="activeComponentConfig"></entity>
+<!-- splash screen -->
+<ng-container *ngIf="!activeComponentConfig.name">
+  HELLO WORLD
+</ng-container>
