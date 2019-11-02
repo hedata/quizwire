@@ -1,3 +1,6 @@
 <ng-container *ngFor="let visual of claim.visuals">
-  <iframe width="550" height=450 [src]="getVisualUrl(visual.slug) | safe"></iframe>
+  <div class="flex column" style="color:white">
+    <h3>{{claim.label}}</h3>
+    <iframe width="100%" height=500px [src]="getVisualUrl(visual.slug) | safe"></iframe>
+  </div>
 </ng-container>

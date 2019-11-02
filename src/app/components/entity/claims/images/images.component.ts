@@ -11,6 +11,8 @@ import { Logger, I18nService } from '@app/core';
 export class ImagesComponent implements OnInit {
   @Input() language: string = 'en';
   @Input() claim: any;
+  @Input() entity : any;
+
 
   constructor(private i18nService: I18nService) {}
 

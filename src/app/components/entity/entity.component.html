@@ -2,20 +2,9 @@
   <!-- Search Header -->
 
   <!-- Dashboard cards -->
-
-  <!--
-  <h1>{{ entityDetails.label }}</h1>
-  <h2>{{ entityDetails.description }}</h2>
-  <div class="flex row" style="padding:5px;margin:0">
-    <span style="padding:5px" *ngFor="let alias of entityDetails.aliases[lang]">{{ alias }}</span>
-  </div>
-  -->
-
   <div class="cardcontainer">
-    <div class="flex row">
     <div class="card" *ngFor="let claim of entityDetails.claims">
-      <claimtypeselector [claim]="claim" [language]="language"></claimtypeselector>
-    </div>
+      <claimtypeselector [claim]="claim" [language]="language" [entity]="entityDetails"></claimtypeselector>
     </div>
   </div>
   <!-- alternatives -->

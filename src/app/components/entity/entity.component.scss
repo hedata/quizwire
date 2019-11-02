@@ -9,10 +9,13 @@
   right: 0;
 }
 .cardcontainer {
-  height: calc(100% - 48px);
+  height: 100%;
+  margin: auto;
+  max-width: 800px;
   //min-height: calc(100% - 93px);
   //max-height: calc(100% - 93px);
   width: 100%;
+  color: white;
   //max-width: 780px;
   overflow-y: scroll;
   overflow-x: hidden;
