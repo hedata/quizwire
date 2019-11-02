@@ -24,6 +24,16 @@
   margin: auto;
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+//scrollbar
+.cardcontainer::-webkit-scrollbar {
+  height: 8px;
+  background: transparent;
+}
+.cardcontainer::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .card {
   padding:10px;
   background-color: rgba(0, 0, 0, 0.2);
