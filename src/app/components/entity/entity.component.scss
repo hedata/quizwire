@@ -9,7 +9,7 @@
   right: 0;
 }
 .cardcontainer {
-  height: calc(100% - 48px);
+  height: calc(100% - 96px);
   margin: auto;
   max-width: 800px;
   //min-height: calc(100% - 93px);
@@ -19,10 +19,11 @@
   //max-width: 780px;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding-top:10px;
   padding-left: 3px;
   padding-right: 3px;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.2);
+  //background-color: rgba(0, 0, 0, 0.2);
 }
 
 //scrollbar
@@ -37,6 +38,8 @@
 .card {
   padding:10px;
   background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  position: relative;
   //color : white;
 }
 

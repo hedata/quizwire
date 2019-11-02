@@ -1,35 +1,60 @@
 <div class="componentView" *ngIf="entityDetails && isActive">
   <!-- Search Header -->
-
+  <ng-container *ngIf="!loading">
   <div class="row" style="background-color:rgba(0, 0, 0, 0.5);margin:auto;color:white;max-width:800px">
     <h2 style="padding:5px;margin-right:10px;margin-bottom:0px">{{entityDetails.label}}</h2>
     <button
       class="btn btn-success form-control"
-      style="height:48px;max-width:160px;margin-left:auto;margin-right:0"
+      style="margin-top:5px;margin-bottom:5px;max-width:160px;margin-left:auto;margin-right:0"
       name="add"
       type="button"
-      title="Add"
-      (click)="toggleComponent('add')"
+      title="Compare"
+      (click)="toggleComponent('compareselect')"
       ngDefaultControl
     >
       <i class="fa fa-plus" aria-hidden="true"></i>
-      Add
+      Compare
     </button>
   </div>
   <!-- adding to compare -->
-  <div class="row" style="background-color:rgba(0, 0, 0, 0.5);margin:auto;color:white;max-width:800px">
-    <div class="row" style="margin:auto">
-
-    </div>
-
-
+  <div class="row" *ngIf="selectedClaim" style="background-color:rgba(0, 0, 0, 0.5);margin:auto;color:white;max-width:800px">
+    <h2 style="padding:5px;margin-right:10px;margin-bottom:0px">{{selectedClaim.label}}</h2>
+    <button
+      class="btn btn-success form-control"
+      style="margin-top:5px;margin-bottom:5px;max-width:78px;margin-left:auto;margin-right:5px"
+      name="Prev"
+      type="button"
+      title="Prev"
+      (click)="prevClaim()"
+      ngDefaultControl
+    >
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      Prev
+    </button>
+    <button
+      class="btn btn-success form-control"
+      style="margin-top:5px;margin-bottom:5px;max-width:78px;margin-left:0;margin-right:0"
+      name="Next"
+      type="button"
+      title="Next"
+      (click)="nextClaim()"
+      ngDefaultControl
+    >
+      <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      Next
+    </button>
   </div>
   <!-- Dashboard cards -->
-  <div class="cardcontainer">
-    <div class="card" *ngFor="let claim of entityDetails.claims">
-      <claimtypeselector [claim]="claim" [language]="language" [entity]="entityDetails"></claimtypeselector>
+  <div class="cardcontainer" *ngIf="selectedClaim">
+    <div class="card">
+        <claimtypeselector [claim]="selectedClaim" [language]="language" [entity]="entityDetails"></claimtypeselector>
     </div>
   </div>
   <!-- alternatives -->
+
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <h2 style="margin:auto;color:white">Loading please be patient everything is generated on the fly</h2>
+  </ng-container>
 
 </div>
