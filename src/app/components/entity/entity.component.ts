@@ -57,4 +57,9 @@ export class EntityComponent implements OnInit {
     this.entityDetails = response;
     console.log('[Entity] Response: ', response);
   }
+
+  detailsForEntity(entity: any) {
+    console.log('[GOTO Entity]', entity);
+    this.router.navigate(['/entity/' + entity.id], { replaceUrl: true });
+  }
 }

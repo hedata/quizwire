@@ -9,7 +9,7 @@
   right: 0;
 }
 .cardcontainer {
-  height: 100%;
+  height: calc(100% - 48px);
   margin: auto;
   max-width: 800px;
   //min-height: calc(100% - 93px);

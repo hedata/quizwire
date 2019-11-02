@@ -1,0 +1,25 @@
+@import "src/theme/theme-variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
+.input_container {
+  max-width: 600px;
+  margin : auto;
+}
+.searchresultcontainer {
+  overflow-y: auto;
+  max-height: 200px;
+  position: absolute;
+}
+.searchresult {
+  z-index :2;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+@include media-breakpoint-down(xs) {
+  .container {
+    width: 100%;
+  }
+}

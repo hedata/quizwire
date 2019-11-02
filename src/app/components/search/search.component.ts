@@ -37,20 +37,10 @@ export class SearchComponent implements OnInit {
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
-    private dataService: DataService
-  ) {}
+    ) {}
 
   ngOnInit() {
     console.log('[Search] Init');
-  }
-
-  async searchForQuery(searchQuery: String) {
-    console.log('[Search] searching for: ', searchQuery);
-    const response = await this.dataService.searchWikiData({
-      searchQuery: searchQuery
-    });
-    this.searchResults = response.search;
-    console.log('[Search] Response: ', response);
   }
   detailsForEntity(entity: any) {
     console.log('[GOTO Entity]', entity);

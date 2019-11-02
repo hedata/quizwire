@@ -1,5 +1,5 @@
 <ng-container *ngFor="let visual of claim.visuals">
-  <div class="flex column" style="color:white">
+  <div class="flex column" style="color:white;padding-top:7px">
     <h3>{{claim.label}}</h3>
     <iframe width="100%" height=500px [src]="getVisualUrl(visual.slug) | safe"></iframe>
   </div>

@@ -1,0 +1,18 @@
+<div class="input_container" style="position:relative">
+  <div class="input-group input-group-lg chat_input">
+    <input
+      class="form-control"
+      type="text"
+      name="'searchQuery'"
+      placeholder="Type here to search"
+      (keyup.enter)="searchForQuery(searchQuery)"
+      autocomplete="on"
+      [(ngModel)]="searchQuery"
+    />
+  </div>
+  <div *ngIf="searchResults && searchResults.length > 0" class="searchresultcontainer">
+    <div *ngFor="let result of searchResults" class="searchresult" (click)="searchResultChosen(result)">
+      {{ result.label }} - {{ result.description }}
+    </div>
+  </div>
+</div>
