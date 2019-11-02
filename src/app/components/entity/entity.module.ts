@@ -7,12 +7,15 @@ import { EntityComponent } from './entity.component';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { DataService } from '@app/services/data.service';
-import { Property18_ImageComponent } from '@app/components/entity/claims/p18_image/p18_image.component';
+import { ImagesComponent } from '@app/components/entity/claims/images/images.component';
+import { ClaimtypeSelectorComponent } from './claims/claimtypeselector/claimtypeselector.component';
+import { TimeseriesComponent } from './claims/timeseries/timeseries.component';
+import { SafePipe } from '@app/pipes/safe.pipe';
 
 @NgModule({
   imports: [ReactiveFormsModule, NgbModule, CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule],
   exports: [EntityComponent],
-  declarations: [EntityComponent, Property18_ImageComponent],
+  declarations: [SafePipe,EntityComponent, ImagesComponent,TimeseriesComponent,ClaimtypeSelectorComponent],
   providers: [DataService]
 })
 export class EntityModule {}

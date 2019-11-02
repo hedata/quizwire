@@ -12,6 +12,7 @@ import { SharedModule } from '@app/shared';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ShellModule } from './shell/shell.module';
+
 @NgModule({
   imports: [
     BrowserModule,

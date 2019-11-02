@@ -1,14 +1,23 @@
 <div class="componentView" *ngIf="entityDetails && isActive">
-  <h1>{{ entityDetails.labels[lang] }}</h1>
-  <h2>{{ entityDetails.descriptions[lang] }}</h2>
-  <!-- alternatives -->
+  <!-- Search Header -->
+
+  <!-- Dashboard cards -->
+
+  <!--
+  <h1>{{ entityDetails.label }}</h1>
+  <h2>{{ entityDetails.description }}</h2>
   <div class="flex row" style="padding:5px;margin:0">
     <span style="padding:5px" *ngFor="let alias of entityDetails.aliases[lang]">{{ alias }}</span>
   </div>
-  <!-- P18 image -->
-  <div *ngIf="entityDetails.claims['wdt:P18']">
-    <div *ngFor="let claim of entityDetails.claims['wdt:P18']">
-      <p18image [lang]="lang" [claim]="claim"></p18image>
+  -->
+
+  <div class="cardcontainer">
+    <div class="flex row">
+    <div class="card" *ngFor="let claim of entityDetails.claims">
+      <claimtypeselector [claim]="claim" [language]="language"></claimtypeselector>
+    </div>
     </div>
   </div>
+  <!-- alternatives -->
+
 </div>

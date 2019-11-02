@@ -8,6 +8,24 @@
   left: 0;
   right: 0;
 }
+.cardcontainer {
+  height: calc(100% - 48px);
+  //min-height: calc(100% - 93px);
+  //max-height: calc(100% - 93px);
+  width: 100%;
+  //max-width: 780px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.card {
+  padding:10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  //color : white;
+}
 
 .landing {
   //background-image: url(../../assets/clouds.jpg);

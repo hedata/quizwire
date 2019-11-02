@@ -16,9 +16,9 @@ const log = new Logger('Entity');
 })
 export class EntityComponent implements OnInit {
   version: string = environment.version;
-  public entityId: String = ''; 
+  public entityId: String = '';
   public entityDetails: any;
-  public lang: String = 'en';
+  public language: String = 'en';
 
   @Input() activeComponentConfig: any;
   isActive: boolean = false;
