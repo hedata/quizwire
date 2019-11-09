@@ -12,8 +12,7 @@
         (click)="toggleComponent('chat')"
         ngDefaultControl
       >
-        <i class="fa fa-comments" aria-hidden="true"></i>
-        Chat
+        <i class="fa fa-comments" aria-hidden="true"></i>        
       </button>
       <button
       [ngClass]="{ active : activeComponentConfig.name==='search'}"
@@ -26,7 +25,6 @@
         ngDefaultControl
       >
         <i class="fa fa-search" aria-hidden="true"></i>
-        Compare
       </button>
       <button
       [ngClass]="{ active : activeComponentConfig.name==='stream'}"
@@ -39,7 +37,6 @@
         ngDefaultControl
       >
         <i class="fa fa-stream" aria-hidden="true"></i>
-        Stream
       </button>
       <button
         [ngClass]="{ active : activeComponentConfig.name===''}"
@@ -52,7 +49,6 @@
         ngDefaultControl
       >
         <i class="fa fa-info" aria-hidden="true"></i>
-        Info
       </button>
     </div>
   </div>
