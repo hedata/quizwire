@@ -63,7 +63,7 @@ export class StreamComponent implements OnInit {
       const diff = (currentDate - this.lastDate) / 1000;
       console.log(this.streamItems.length, "after: ", diff);
       console.log("Start: ",this.lastDate, " End: ",currentDate);
-      console.log(this.streamItems.filter((el:any)=>el.imageUrl));
+      //console.log(this.streamItems.filter((el:any)=>el.imageUrl));
       this.lastDate = currentDate;
       this.fade=false;
       setTimeout(()=> {
