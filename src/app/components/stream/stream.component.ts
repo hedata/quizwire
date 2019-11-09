@@ -29,6 +29,7 @@ export class StreamComponent implements OnInit {
     if (this.activeComponentConfig.name === 'stream') {
       console.log('[SettingEntittyActive]');
       this.isActive = true;
+      this.loadData();
     } else {
       this.isActive = false;
     }
@@ -47,7 +48,6 @@ export class StreamComponent implements OnInit {
     console.log('[Stream] Init');
     const intervall = 7000;
       setInterval(this.loadData, intervall);
-    this.loadData();
   }
 
   private loadData = async () => {
