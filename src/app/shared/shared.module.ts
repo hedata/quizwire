@@ -7,10 +7,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from '@app/core';
+import { SafePipe } from '@app/pipes/safe.pipe';
 
 @NgModule({
   imports: [ReactiveFormsModule, NgbModule, CommonModule, TranslateModule, CoreModule,CommonModule,FormsModule],
-  declarations: [LoaderComponent,SearchFieldComponent],
-  exports: [LoaderComponent,SearchFieldComponent]
+  declarations: [LoaderComponent,SearchFieldComponent, SafePipe],
+  exports: [LoaderComponent,SearchFieldComponent,SafePipe]
 })
 export class SharedModule {}

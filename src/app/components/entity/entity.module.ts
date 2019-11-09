@@ -10,12 +10,11 @@ import { DataService } from '@app/services/data.service';
 import { ImagesComponent } from '@app/components/entity/claims/images/images.component';
 import { ClaimtypeSelectorComponent } from './claims/claimtypeselector/claimtypeselector.component';
 import { TimeseriesComponent } from './claims/timeseries/timeseries.component';
-import { SafePipe } from '@app/pipes/safe.pipe';
 
 @NgModule({
   imports: [ReactiveFormsModule, NgbModule, CommonModule, TranslateModule, CoreModule, SharedModule, FormsModule],
   exports: [EntityComponent],
-  declarations: [SafePipe,EntityComponent, ImagesComponent,TimeseriesComponent,ClaimtypeSelectorComponent],
+  declarations: [EntityComponent, ImagesComponent,TimeseriesComponent,ClaimtypeSelectorComponent],
   providers: [DataService]
 })
 export class EntityModule {}

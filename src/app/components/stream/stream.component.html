@@ -6,20 +6,23 @@
     >
     <div [ngClass]="{ new: index < 3 && fade===false }" class="flex column card" >
       <div class="flex">
+        <img *ngIf="item.imageUrl" style="width:100%" src="{{item.imageUrl}}" />
+      </div>
+      <div class="flex">
         <h2>{{ item.label }}</h2>
       </div>
       <div class="flex">
-        {{ index+1 }} / {{ streamItems.length }}
+
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
-          reddit
+          Reddit
         </a>
-        <a href="{{ item.url }}" target="_blank">
-          source
+        <a *ngIf="item.url!== item.sourceData.data.permalink" href="{{ item.url }}" target="_blank">
+          Source
         </a>
+        {{ index+1 }} / {{ streamItems.length }}
+        <span>{{item.created_at | date:'hh:mm:ss'}}</span>
       </div>
-      <div class="flex">
-        <img *ngIf="item.imageUrl" style="width:100%" src="{{item.imageUrl}}" />
-        </div>
+
     </div>
   </div>
   </div>
