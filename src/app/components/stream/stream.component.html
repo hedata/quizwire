@@ -9,14 +9,17 @@
         <h2>{{ item.label }}</h2>
       </div>
       <div class="flex">
+        {{ index+1 }} / {{ streamItems.length }}
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
           reddit
         </a>
         <a href="{{ item.url }}" target="_blank">
           source
         </a>
-        {{ index }} / {{ streamItems.length }}
       </div>
+      <div class="flex">
+        <img *ngIf="item.imageUrl" style="width:100%" src="{{item.imageUrl}}" />
+        </div>
     </div>
   </div>
   </div>
