@@ -11,6 +11,7 @@ import { EntityModule } from '@app/components/entity/entity.module';
 import { LoginModule } from '@app/login/login.module';
 import { HighscoreModule } from '@app/components/highscore/highscore.module';
 import { HomeModule } from '@app/components/home/home.module';
+import { StreamModule } from '@app/components/stream/stream.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { HomeModule } from '@app/components/home/home.module';
     EntityModule,
     SearchModule,
     HighscoreModule,
-    HomeModule
+    HomeModule,
+    StreamModule
   ],
   declarations: [ShellComponent]
 })

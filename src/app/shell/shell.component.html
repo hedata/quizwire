@@ -29,6 +29,19 @@
         Compare
       </button>
       <button
+      [ngClass]="{ active : activeComponentConfig.name==='stream'}"
+        class="btn btn-success form-control"
+        style="margin:3px"
+        name="compare"
+        type="button"
+        title="Stream"
+        (click)="toggleComponent('stream')"
+        ngDefaultControl
+      >
+        <i class="fa fa-search" aria-hidden="true"></i>
+        Stream
+      </button>
+      <button
         [ngClass]="{ active : activeComponentConfig.name===''}"
         class="btn btn-success form-control"
         style="margin:3px"
@@ -50,4 +63,5 @@
 <entity [activeComponentConfig]="activeComponentConfig"></entity>
 <highscore [activeComponentConfig]="activeComponentConfig"></highscore>
 <home [activeComponentConfig]="activeComponentConfig"></home>
+<stream [activeComponentConfig]="activeComponentConfig"></stream>
 </div>

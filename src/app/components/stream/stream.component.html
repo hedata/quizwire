@@ -1,0 +1,23 @@
+<div class="componentView" *ngIf="isActive">
+  <div class="cardcontainer">
+    <div
+      class="flex column"
+      *ngFor="let item of streamItems; let index = index"
+    >
+    <div [ngClass]="{ new: index < 3 && fade===false }" class="flex column card" >
+      <div class="flex">
+        <h2>{{ item.label }}</h2>
+      </div>
+      <div class="flex">
+        <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
+          reddit
+        </a>
+        <a href="{{ item.url }}" target="_blank">
+          source
+        </a>
+        {{ index }} / {{ streamItems.length }}
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

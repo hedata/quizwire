@@ -15,4 +15,8 @@ export class DataService {
   getEntityDetails(context: any): Promise<any> {
     return this.httpClient.post('/services/entity/details', context).toPromise();
   }
+
+  getLatestRawStream(context: any):Promise<any> {
+    return this.httpClient.post('/services/stream/getlatestrawitems',context).toPromise();
+  }
 }
