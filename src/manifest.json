@@ -1,8 +1,8 @@
 {
   "name": "Reboting",
   "short_name": "Reboting",
-  "theme_color": "#488aff",
-  "background_color": "#488aff",
+  "theme_color": "#32a852",
+  "background_color": "#32a852",
   "scope": "/",
   "start_url": "/",
   "display": "standalone",
