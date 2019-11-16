@@ -46,7 +46,7 @@ export class StreamComponent implements OnInit {
 
   ngOnInit() {
     console.log('[Stream] Init');
-    const intervall = 7000;
+    const intervall = 2300;
       setInterval(this.loadData, intervall);
   }
 
@@ -57,7 +57,7 @@ export class StreamComponent implements OnInit {
       const countoldItems = this.streamItems.length
       this.streamItems = (await this.dataService.getLatestRawStream({
         lastUpdate : this.streamItems.length>0?this.streamItems[0].created_at:null,
-        limit : 3
+        limit : 1
       })).concat(this.streamItems);
 
       const diff = (currentDate - this.lastDate) / 1000;
@@ -69,7 +69,7 @@ export class StreamComponent implements OnInit {
       setTimeout(()=> {
         console.log("[Fade]")
         this.fade = true;
-      },3000)
+      },1000)
     }
 
   }

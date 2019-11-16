@@ -4,7 +4,7 @@
       class="flex column"
       *ngFor="let item of streamItems; let index = index"
     >
-    <div [ngClass]="{ new: index < 3 && fade===false }" class="flex column card" >
+    <div [ngClass]="{ new: index < 1 && fade===false }" class="flex column card" >
       <div class="flex">
         <img *ngIf="item.imageUrl" style="width:100%" src="{{item.imageUrl}}" />
       </div>
