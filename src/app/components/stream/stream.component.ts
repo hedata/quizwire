@@ -63,7 +63,7 @@ export class StreamComponent implements OnInit {
       if(response.length>0) {
         const item = response[0];
         //add displayType and displayUrl
-        this.addTypes(item);
+        this.addDisplayTypes(item);
         console.log(item.url);
         console.log(item.display);
         //console.log(item);
@@ -88,54 +88,40 @@ export class StreamComponent implements OnInit {
     }
 
   }
-  addTypes = (item:any) => {
+  addDisplayTypes = (item:any) => {
     item.display =  {
-      displayType : this.getDisplayType(item),
+      displayType : null,
       displayUrl : null
     };
-    item.display.displayUrl = this.getDisplayUrl(item);
-    return item;
-  }
-  private getDisplayUrl = (item:any) => {
-    if(item.display.displayType==='image') {
-      if(item.url) {
-        if(item.url.startsWith('https://i.redd.it/')){
-          return item.url;
-        }
-      }
-      if(item.imageUrl) {
-        return item.imageUrl;
-      }
-    }
-    if(item.display.displayType==='imgur') {
-      return item.url.replace("/a/","/");
-    }
-    if(item.display.displayType==='youtube') {
-      return item.url.replace("https://youtu.be/","https://youtube.com/embed/");
-    }
-    if(item.display.displayType==='gfycat') {
-      return item.url.replace('https://gfycat.com/','https://gfycat.com/ifr/');
-    }
-    return undefined;
-  }
-  private getDisplayType = (item:any) => {
     if(item.url) {
       if(item.url.startsWith('https://youtu.be')) {
         //console.log("[Youtube]")
-        https://www.youtube.com/watch?v=ErQHVUQ6QCk
-        return 'youtube';
+        item.display.displayType = 'youtube';
+        item.display.displayUrl= item.url.replace("https://youtu.be/","https://youtube.com/embed/");
       }
       if(item.url.startsWith('https://imgur.com')) {
-        //console.log("[Imgur]" )
-        return 'imgur';
+        item.display.displayType =  'imgur';
+        item.display.displayUrl = item.url.replace("/a/","/").replace("https://","https://i.")+item.url.endsWith(".jpg")?"":".jpg";
       };
       if(item.url.startsWith('https://i.imgur.com')) {
-        return 'imgur';
+        item.display.displayType =  'imgur';
+        item.display.displayUrl = item.url.replace("/a/","/")+item.url.endsWith(".jpg")?"":".jpg";
       }
-      if(item.url.startsWith('https://gfycat.com/slightmarrieddutchshepherddog?utm_source=verticalgifs')) {
-        return 'gfycat';
+      if(item.url.startsWith('https://gfycat.com')) {
+        item.display.displayType =  'gfycat';
+        item.display.displayUrl = item.url.replace('https://gfycat.com/','https://gfycat.com/ifr/');
+      }
+      if(item.url.startsWith('https://i.redd.it/')){
+        item.display.displayUrl = item.url;
+        item.display.displayType =  'image';
       }
     }
-    return 'image';
+    if(!item.display.displayType) {
+      if(item.imageUrl) {
+        item.display.displayType =  'image';
+        item.display.displayUrl =  item.imageUrl;
+      }    
+    }
+    return item;
   }
 }
