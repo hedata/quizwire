@@ -3,7 +3,7 @@
     <div class="flex column" *ngFor="let item of streamItems; let index = index">
       <div [ngClass]="{ new: index < 1 && fade === false }" class="flex column card">
         <div class="flex" *ngIf="item.display.displayType==='youtube' || item.display.displayType==='gfycat'">
-          <iframe width="100%" height=540px [src]="{{item.display.displayUrl}} | safe"></iframe>
+          <iframe width="100%" height=540px [src]="item.display.displayUrl | safe"></iframe>
         </div>
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank" class="flex column">
         <div class="flex" *ngIf="item.display.displayType==='image'">

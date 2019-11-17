@@ -111,7 +111,7 @@ export class StreamComponent implements OnInit {
       return item.url.replace("/a/","/");
     }
     if(item.display.displayType==='youtube') {
-      return item.url.replace("https://youtu.be/","https://youtbe.com/embed/");
+      return item.url.replace("https://youtu.be/","https://youtube.com/embed/");
     }
     if(item.display.displayType==='gfycat') {
       return item.url.replace('https://gfycat.com/','https://gfycat.com/ifr/');
@@ -119,7 +119,7 @@ export class StreamComponent implements OnInit {
     return undefined;
   }
   private getDisplayType = (item:any) => {
-    if(item.url) {      
+    if(item.url) {
       if(item.url.startsWith('https://youtu.be')) {
         //console.log("[Youtube]")
         https://www.youtube.com/watch?v=ErQHVUQ6QCk
