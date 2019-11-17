@@ -94,6 +94,10 @@ export class StreamComponent implements OnInit {
       displayUrl : null
     };
     if(item.url) {
+      if(item.url.startsWith('https://www.youtube.com/watch?v=')) {
+        item.display.displayType = 'youtube';
+        item.display.displayUrl= item.url.replace("https://www.youtube.com/watch?v=","https://youtube.com/embed/");
+      }
       if(item.url.startsWith('https://youtu.be')) {
         //console.log("[Youtube]")
         item.display.displayType = 'youtube';
@@ -101,11 +105,11 @@ export class StreamComponent implements OnInit {
       }
       if(item.url.startsWith('https://imgur.com')) {
         item.display.displayType =  'imgur';
-        item.display.displayUrl = item.url.replace("/a/","/").replace("https://","https://i.")+item.url.endsWith(".jpg")?"":".jpg";
+        item.display.displayUrl = item.url.replace("/a/","/").replace("https://","https://i.")+".jpg";
       };
       if(item.url.startsWith('https://i.imgur.com')) {
         item.display.displayType =  'imgur';
-        item.display.displayUrl = item.url.replace("/a/","/")+item.url.endsWith(".jpg")?"":".jpg";
+        item.display.displayUrl = item.url;
       }
       if(item.url.startsWith('https://gfycat.com')) {
         item.display.displayType =  'gfycat';
@@ -120,7 +124,7 @@ export class StreamComponent implements OnInit {
       if(item.imageUrl) {
         item.display.displayType =  'image';
         item.display.displayUrl =  item.imageUrl;
-      }    
+      }
     }
     return item;
   }
