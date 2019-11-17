@@ -47,7 +47,7 @@ export class StreamComponent implements OnInit {
   ngOnInit() {
     console.log('[Stream] Init');
     //2300
-    const intervall = 5300;
+    const intervall = 3400;
       setInterval(this.loadData, intervall);
   }
 
@@ -56,27 +56,35 @@ export class StreamComponent implements OnInit {
     if(this.isActive) {
       //console.log("[Stream] loding data");
       const countoldItems = this.streamItems.length;
-      const item = (await this.dataService.getLatestRawStream({
+      const response = (await this.dataService.getLatestRawStream({
         lastUpdate : this.streamItems.length>0?this.streamItems[0].created_at:null,
         limit : 1
-      }))[0];
-      //add displayType and displayUrl
-      this.addTypes(item);
-      console.log(item.display,item.url,item);
-      this.streamItems.unshift(item);
-      if(this.streamItems.length>500) {
-        this.streamItems.pop();
-      }
-      const diff = (currentDate - this.lastDate) / 1000;
-      console.log("after: ", diff);
-      //console.log("Start: ",this.lastDate, " End: ",currentDate);
+      }));
+      if(response.length>0) {
+        const item = response[0];
+        //add displayType and displayUrl
+        this.addTypes(item);
+        console.log(item.url);
+        console.log(item.display);
+        //console.log(item);
+        this.streamItems.unshift(item);
+        if(this.streamItems.length>500) {
+          this.streamItems.pop();
+        }
+        const diff = (currentDate - this.lastDate) / 1000;
+        //console.log("after: ", diff);
+        //console.log("Start: ",this.lastDate, " End: ",currentDate);
 
-      this.lastDate = currentDate;
-      this.fade=false;
-      setTimeout(()=> {
-        //console.log("[Fade]")
-        this.fade = true;
-      },1000)
+        this.lastDate = currentDate;
+        this.fade=false;
+        setTimeout(()=> {
+          //console.log("[Fade]")
+          this.fade = true;
+        },1000)
+      } else{
+        console.log("[Got no items]")
+
+      }
     }
 
   }
@@ -105,18 +113,28 @@ export class StreamComponent implements OnInit {
     if(item.display.displayType==='youtube') {
       return item.url.replace("https://youtu.be/","https://youtbe.com/embed/");
     }
+    if(item.display.displayType==='gfycat') {
+      return item.url.replace('https://gfycat.com/','https://gfycat.com/ifr/');
+    }
     return undefined;
   }
   private getDisplayType = (item:any) => {
-    if(item.url) {
-      if(item.url.startsWith('https://youtu.be/kcIv6JqHRuk')) {
-        console.log("[Youtube]")
+    if(item.url) {      
+      if(item.url.startsWith('https://youtu.be')) {
+        //console.log("[Youtube]")
+        https://www.youtube.com/watch?v=ErQHVUQ6QCk
         return 'youtube';
       }
       if(item.url.startsWith('https://imgur.com')) {
-        console.log("[Imgur]")
-        return 'imgur'
+        //console.log("[Imgur]" )
+        return 'imgur';
       };
+      if(item.url.startsWith('https://i.imgur.com')) {
+        return 'imgur';
+      }
+      if(item.url.startsWith('https://gfycat.com/slightmarrieddutchshepherddog?utm_source=verticalgifs')) {
+        return 'gfycat';
+      }
     }
     return 'image';
   }
