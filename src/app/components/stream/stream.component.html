@@ -1,29 +1,35 @@
 <div class="componentView" *ngIf="isActive">
   <div class="cardcontainer">
-    <div
-      class="flex column"
-      *ngFor="let item of streamItems; let index = index"
-    >
-    <div [ngClass]="{ new: index < 1 && fade===false }" class="flex column card" >
-      <div class="flex">
-        <img *ngIf="item.imageUrl" style="width:100%" src="{{item.imageUrl}}" />
-      </div>
-      <div class="flex">
-        <h2>{{ item.label }}</h2>
-      </div>
-      <div class="flex">
+    <div class="flex column" *ngFor="let item of streamItems; let index = index">
+      <div [ngClass]="{ new: index < 1 && fade === false }" class="flex column card">
+        <div class="flex" *ngIf="item.display.displayType==='image'">
+          <img *ngIf="item.display.displayUrl" style="width:100%" src="{{item.display.displayUrl}}" />
+        </div>
+        <div class="flex column" *ngIf="item.display.displayType==='imgur'">
+          <img style="width:100%" src="{{item.display.displayUrl}}" />
+          <b>IMGUR</b>
+        </div>
+        <div class="flex" *ngIf="item.display.displayType==='youtube'">
+          <iframe width="420" height="315" src="{{item.display.displayUrl}}"> </iframe>
+          <b>YOuTUBE</b>
+        </div>
+        <div class="flex">
+          <h2>{{ item.label }}</h2>
+        </div>
+        <div class="flex">
+          <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
+            Reddit
+          </a>
+          <a *ngIf="item.url !== item.sourceData.data.permalink" href="{{ item.url }}" target="_blank">
+            Source
+          </a>
+          <!--{{ index + 1 }} / {{ streamItems.length }}-->
 
-        <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
-          Reddit
-        </a>
-        <a *ngIf="item.url!== item.sourceData.data.permalink" href="{{ item.url }}" target="_blank">
-          Source
-        </a>
-        {{ index+1 }} / {{ streamItems.length }}
-        <span>{{item.created_at | date:'hh:mm:ss'}}</span>
-      </div>
+          <b>{{ item.sourceData.data.subreddit }}</b>
 
+          <span>{{ item.created_at | date: 'hh:mm:ss' }}</span>
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 </div>
