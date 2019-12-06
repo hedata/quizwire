@@ -1,7 +1,6 @@
 @import "src/theme/theme-variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 
-
 .landing_fullscreen {
   position: absolute;
   top: 0;
@@ -12,7 +11,7 @@
 
 .landing {
   //background-image: url(../../../assets/clouds.jpg);
-  background-color: #efedf1;
+  //background-color: #efedf1;
   height: 100vh;
   //background-size: cover;
   //background-position: 50% 50%;
@@ -27,7 +26,7 @@
   width: 100%;
   /* bring your own prefixes */
   transform: translate(0, -50%);
-  background-color: rgba(0, 0, 0, 0.2);
+  //background-color: rgba(0, 0, 0, 0.2);
 }
 
 .middle_center {

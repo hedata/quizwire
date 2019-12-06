@@ -2,7 +2,8 @@
 @import "~bootstrap/scss/mixins/_breakpoints";
 
 .new {
-  background-color: rgba(123, 239, 178, 0.8)!important;
+  background-color: rgb(5, 3, 36) !important;
+  color: white !important;
 }
 .landing_fullscreen {
   position: absolute;
@@ -12,7 +13,7 @@
   right: 0;
 }
 .cardcontainer {
-  height: 100%;
+  //height: 100%;
   margin: auto;
   max-width: 800px;
   //min-height: calc(100% - 93px);
@@ -20,29 +21,19 @@
   width: 100%;
   color: black;
   //max-width: 780px;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   overflow-x: hidden;
-  padding-top:10px;
+  padding-top: 10px;
   padding-left: 3px;
   padding-right: 3px;
   margin: auto;
   //background-color: rgba(0, 0, 0, 0.2);
 }
-
-//scrollbar
-.cardcontainer::-webkit-scrollbar {
-  height: 8px;
-  background: transparent;
-}
-.cardcontainer::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
 .card {
-  color:black;
-  background-color:white;
-  margin-bottom:15px;
-  padding:10px;
+  color: black;
+  background-color: white;
+  margin-bottom: 15px;
+  padding: 10px;
 }
 
 .landing {

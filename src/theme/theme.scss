@@ -2,3 +2,15 @@
  * Global application theme.
  * Framework overrides and customization goes here.
  */
+.btn-success {
+  background-color: transparent;
+  border-color: transparent;
+  &:hover {
+    background-color: white !important;
+    color: black !important;
+  }
+  &.active {
+    background-color: white !important;
+    color: black !important;
+  }
+}

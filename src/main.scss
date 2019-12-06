@@ -16,16 +16,24 @@
 // Theme customization
 @import "theme/theme";
 
-
 //custom parts
 .componentView {
-  height: calc( 100% - 45px);
+  height: calc(100% - 45px);
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   min-width: 50%;
-  width : 100%;
+  width: 100%;
   right: 0;
   overflow-y: auto;
+}
+
+//scrollbar
+.componentView::-webkit-scrollbar {
+  height: 8px;
+  background: transparent;
+}
+.componentView::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
 }
