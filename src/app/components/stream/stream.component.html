@@ -1,7 +1,8 @@
 <div class="componentView" *ngIf="isActive">
   <div class="cardcontainer">
     <div class="flex column fullwidth" *ngFor="let item of streamItems; let index = index">
-      <div [ngClass]="{ new: index < 1 && fade === false }" class="flex column card">
+      <!-- [ngClass]="{ new : index < 1 && fade === false }" -->
+      <div class="new flex column card">
         <div class="flex" *ngIf="item.display.displayType === 'youtube' || item.display.displayType === 'gfycat'">
           <iframe width="100%" frameBorder="0" height="540px" [src]="item.display.displayUrl | safe"></iframe>
         </div>
