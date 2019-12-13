@@ -17,7 +17,8 @@
 .botfooter {
   //position: absolute;
   //bottom: 0;
-  //left: 0;
+  left: 0;
+  width: calc(100% - 50px);
   //right: 0;
 }
 .input_container {

@@ -1,7 +1,16 @@
 .footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  z-index: 2;
+}
+
+.menu {
+  position: absolute;
+  bottom: 55px;
+  right: 0px;
+  z-index: 2;
+  width: 120px;
 }
 
 .mainpage {

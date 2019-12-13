@@ -1,63 +1,73 @@
 <div class="mainpage">
-<div class="footer">
-  <div style ="display: flex;justify-content: center;">
-
+  <div class="menu flex column" *ngIf="menuActive">
+    <button
+      [ngClass]="{ active: activeComponentConfig.name === 'chat' }"
+      class="btn btn-success form-control"
+      name="chat"
+      type="button"
+      title="Chat"
+      (click)="toggleComponent('chat')"
+      ngDefaultControl
+    >
+      <i class="fa fa-comments" aria-hidden="true"></i> Chat
+    </button>
+    <button
+      [ngClass]="{ active: activeComponentConfig.name === 'search' }"
+      class="btn btn-success form-control"
+      name="compare"
+      type="button"
+      title="Compare"
+      (click)="toggleComponent('search')"
+      ngDefaultControl
+    >
+      <i class="fa fa-search" aria-hidden="true"></i> Compare
+    </button>
+    <button
+      [ngClass]="{ active: activeComponentConfig.name === 'stream' }"
+      class="btn btn-success form-control"
+      name="compare"
+      type="button"
+      title="Stream"
+      (click)="toggleComponent('stream')"
+      ngDefaultControl
+    >
+      <i class="fa fa-stream" aria-hidden="true"></i> Stream
+    </button>
+    <button
+      [ngClass]="{ active: activeComponentConfig.name === '' }"
+      class="btn btn-success form-control"
+      name="chat"
+      type="button"
+      title="Info"
+      (click)="toggleComponent('')"
+      ngDefaultControl
+    >
+      <i class="fa fa-info" aria-hidden="true"></i> Info
+    </button>
+  </div>
+  <div class="footer">
+    <div class="flex center">
+      <!-- toggle menu -->
       <button
-      [ngClass]="{ active : activeComponentConfig.name==='chat'}"
+        style="width:55px;height:55px"
+        [ngClass]="{ active: menuActive }"
         class="btn btn-success form-control"
-        style="margin:3px"
-        name="chat"
+        name="menu"
         type="button"
-        title="Chat"
-        (click)="toggleComponent('chat')"
+        title="menu"
+        (click)="toggleMenu()"
         ngDefaultControl
       >
-        <i class="fa fa-comments" aria-hidden="true"></i>        
-      </button>
-      <button
-      [ngClass]="{ active : activeComponentConfig.name==='search'}"
-        class="btn btn-success form-control"
-        style="margin:3px"
-        name="compare"
-        type="button"
-        title="Compare"
-        (click)="toggleComponent('search')"
-        ngDefaultControl
-      >
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </button>
-      <button
-      [ngClass]="{ active : activeComponentConfig.name==='stream'}"
-        class="btn btn-success form-control"
-        style="margin:3px"
-        name="compare"
-        type="button"
-        title="Stream"
-        (click)="toggleComponent('stream')"
-        ngDefaultControl
-      >
-        <i class="fa fa-stream" aria-hidden="true"></i>
-      </button>
-      <button
-        [ngClass]="{ active : activeComponentConfig.name===''}"
-        class="btn btn-success form-control"
-        style="margin:3px"
-        name="chat"
-        type="button"
-        title="Info"
-        (click)="toggleComponent('')"
-        ngDefaultControl
-      >
-        <i class="fa fa-info" aria-hidden="true"></i>
+        <img style="height:55px;width:55px;position:absolute;top:0;left:0" src="assets/app_icon.png" alt="reboting" />
       </button>
     </div>
   </div>
 
-<!-- active project -->
-<chat [activeComponentConfig]="activeComponentConfig"></chat>
-<search [activeComponentConfig]="activeComponentConfig"></search>
-<entity [activeComponentConfig]="activeComponentConfig"></entity>
-<highscore [activeComponentConfig]="activeComponentConfig"></highscore>
-<home [activeComponentConfig]="activeComponentConfig"></home>
-<stream [activeComponentConfig]="activeComponentConfig"></stream>
+  <!-- active project -->
+  <chat [activeComponentConfig]="activeComponentConfig"></chat>
+  <search [activeComponentConfig]="activeComponentConfig"></search>
+  <entity [activeComponentConfig]="activeComponentConfig"></entity>
+  <highscore [activeComponentConfig]="activeComponentConfig"></highscore>
+  <home [activeComponentConfig]="activeComponentConfig"></home>
+  <stream [activeComponentConfig]="activeComponentConfig"></stream>
 </div>

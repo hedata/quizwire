@@ -8,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ShellComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
-
-  public activeComponentConfig: { name: string; params: Array<any> } = { name: undefined, params :[]};
+  public menuActive: boolean = false;
+  public activeComponentConfig: { name: string; params: Array<any> } = { name: undefined, params: [] };
   ngOnInit() {
     console.log('[Shell]- Init', this.route);
     this.route.url.pipe().subscribe(url => {
@@ -33,12 +33,16 @@ export class ShellComponent implements OnInit {
       console.log('[Shell] - setting active compoennt ', this.activeComponentConfig);
     });
   }
-  toggleComponent= (component:string) => {
-    console.log("[Shell] - toggle ",component);
-    if(this.activeComponentConfig.name ===component) {
+  toggleComponent = (component: string) => {
+    console.log('[Shell] - toggle ', component);
+    if (this.activeComponentConfig.name === component) {
       this.router.navigate(['/']);
     } else {
-      this.router.navigate(['/'+component]);
+      this.router.navigate(['/' + component]);
     }
-  }
+    this.menuActive = false;
+  };
+  toggleMenu = () => {
+    this.menuActive = !this.menuActive;
+  };
 }
