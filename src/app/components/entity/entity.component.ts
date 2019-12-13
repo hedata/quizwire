@@ -8,7 +8,9 @@ import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { DataService } from '@app/services/data.service';
 
 const log = new Logger('Entity');
-
+/**
+ * Shows a stream for a single entity from the search
+ */
 @Component({
   selector: 'entity',
   templateUrl: './entity.component.html',
@@ -16,10 +18,12 @@ const log = new Logger('Entity');
 })
 export class EntityComponent implements OnInit {
   version: string = environment.version;
-  public loading:boolean=true;
-  public selectedClaim: any ;
+  public intervall = 7200;
+  public shownClaims: any = [];
+  public loading: boolean = true;
+  public selectedClaim: any;
   public entityId: String = '';
-  public entityDetails: { label: string, claims: Array<any>};
+  public entityDetails: { label: string; claims: Array<any> };
   public language: String = 'en';
 
   @Input() activeComponentConfig: any;
@@ -30,8 +34,8 @@ export class EntityComponent implements OnInit {
       console.log('[SettingEntittyActive]');
       this.isActive = true;
       this.entityId = this.activeComponentConfig.params[0];
-      if(this.entityId) {
-          this.setupEntityDetails(this.entityId);
+      if (this.entityId) {
+        this.setupEntityDetails(this.entityId);
       }
     } else {
       this.isActive = false;
@@ -49,17 +53,35 @@ export class EntityComponent implements OnInit {
 
   ngOnInit() {
     console.log('[Entity] Init');
+    setInterval(this.showData, this.intervall);
   }
-  async setupEntityDetails(id:String) {
-    this.loading=true;
+  private showData = () => {
+    if (
+      this.isActive &&
+      !this.loading &&
+      this.entityDetails &&
+      this.entityDetails.claims &&
+      this.entityDetails.claims.length > 0
+    ) {
+      const current = this.shownClaims.length;
+      if (current < this.entityDetails.claims.length) {
+        console.log('[Entity] - show data');
+        this.shownClaims.unshift(this.entityDetails.claims[current]);
+      }
+    }
+  };
+
+  async setupEntityDetails(id: String) {
+    this.loading = true;
     await this.getDetails(id);
-    if(this.entityDetails && this.entityDetails.claims && this.entityDetails.claims.length>0) {
+    if (this.entityDetails && this.entityDetails.claims && this.entityDetails.claims.length > 0) {
       this.selectedClaim = this.entityDetails.claims[0];
     } else {
       this.selectedClaim = undefined;
     }
     //select
-    this.loading=false;
+    this.loading = false;
+    this.showData();
   }
 
   async getDetails(id: String) {
@@ -71,24 +93,24 @@ export class EntityComponent implements OnInit {
     console.log('[Entity] Response: ', response);
   }
   prevClaim() {
-    const currentClaimIndex = this.entityDetails.claims.findIndex(el => el.property===this.selectedClaim.property);
-    if(currentClaimIndex-1 > 0) {
-      this.selectedClaim = this.entityDetails.claims[currentClaimIndex-1];
+    const currentClaimIndex = this.entityDetails.claims.findIndex(el => el.property === this.selectedClaim.property);
+    if (currentClaimIndex - 1 > 0) {
+      this.selectedClaim = this.entityDetails.claims[currentClaimIndex - 1];
     } else {
       //last one
-      this.selectedClaim = this.entityDetails.claims[this.entityDetails.claims.length-1];
+      this.selectedClaim = this.entityDetails.claims[this.entityDetails.claims.length - 1];
     }
-    console.log("[Claimchange To]",this.selectedClaim,currentClaimIndex)
+    console.log('[Claimchange To]', this.selectedClaim, currentClaimIndex);
   }
   nextClaim() {
-    const currentClaimIndex = this.entityDetails.claims.findIndex(el =>el.property===this.selectedClaim.property);
-    if(currentClaimIndex+1 > this.entityDetails.claims.length-1) {
+    const currentClaimIndex = this.entityDetails.claims.findIndex(el => el.property === this.selectedClaim.property);
+    if (currentClaimIndex + 1 > this.entityDetails.claims.length - 1) {
       //start again
       this.selectedClaim = this.entityDetails.claims[0];
     } else {
-      this.selectedClaim = this.entityDetails.claims[currentClaimIndex+1];
+      this.selectedClaim = this.entityDetails.claims[currentClaimIndex + 1];
     }
-    console.log("[Claimchange To]",this.selectedClaim,currentClaimIndex)
+    console.log('[Claimchange To]', this.selectedClaim, currentClaimIndex);
   }
   detailsForEntity(entity: any) {
     console.log('[GOTO Entity]', entity);

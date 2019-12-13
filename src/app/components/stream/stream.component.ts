@@ -47,8 +47,6 @@ export class StreamComponent implements OnInit {
   intervall = 3400;
   ngOnInit() {
     console.log('[Stream] Init');
-    //2300
-
     setInterval(this.loadData, this.intervall);
   }
 

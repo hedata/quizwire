@@ -1,7 +1,11 @@
-<div class="flex row" style="padding:5px;margin:0">
-  <h2>{{ entity.description }}</h2>
-  <span style="padding:5px" *ngFor="let alias of entity.aliases">{{ alias }}</span>
-  <ng-container *ngFor="let image of claim.images" >
-    <img *ngIf="image.imageUrl" src="{{image.imageUrl }}" />
+<div class="flex column" style="padding:5px;margin:0">
+  <div class="flex row" style="margin:0">
+    <h2>{{ entity.description }}</h2>
+  </div>
+  <div class="flex row" style="margin:0">
+    <span style="padding:5px" *ngFor="let alias of entity.aliases">{{ alias }}</span>
+  </div>
+  <ng-container *ngFor="let image of claim.images">
+    <img *ngIf="image.imageUrl" src="{{ image.imageUrl }}" />
   </ng-container>
 </div>

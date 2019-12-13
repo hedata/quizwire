@@ -2,7 +2,8 @@
   <!-- Search Header -->
   <ng-container *ngIf="!loading">
     <div class="row" style="margin:auto;color:white;max-width:800px">
-      <h2 style="padding:5px;margin-right:10px;margin-bottom:0px">{{ entityDetails.label }}</h2>
+      <h2 style="padding:5px">{{ entityDetails.label }}</h2>
+      <!--
       <button
         class="btn btn-success form-control"
         style="margin-top:5px;margin-bottom:5px;max-width:160px;margin-left:auto;margin-right:0"
@@ -15,8 +16,10 @@
         <i class="fa fa-plus" aria-hidden="true"></i>
         Compare
       </button>
+      -->
     </div>
     <!-- adding to compare -->
+    <!--
     <div class="row" *ngIf="selectedClaim" style="margin:auto;color:white;max-width:800px">
       <h2 style="padding:5px;margin-right:10px;margin-bottom:0px">{{ selectedClaim.label }}</h2>
       <button
@@ -44,15 +47,17 @@
         Next
       </button>
     </div>
+    -->
     <!-- Dashboard cards -->
-    <div class="cardcontainer" *ngIf="selectedClaim">
-      <div class="card">
-        <claimtypeselector [claim]="selectedClaim" [language]="language" [entity]="entityDetails"></claimtypeselector>
+    <div class="cardcontainer">
+      <ng-container *ngIf="loading">
+        <h2 style="margin:auto;color:white">Loading please be patient everything is generated on the fly</h2>
+      </ng-container>
+      <div class="card" *ngFor="let claim of shownClaims">
+        <h2 style="padding:5px;margin-right:10px;margin-bottom:0px;margin-top:20px">{{ claim.label }}</h2>
+        <claimtypeselector [claim]="claim" [language]="language" [entity]="entityDetails"></claimtypeselector>
       </div>
     </div>
     <!-- alternatives -->
-  </ng-container>
-  <ng-container *ngIf="loading">
-    <h2 style="margin:auto;color:white">Loading please be patient everything is generated on the fly</h2>
   </ng-container>
 </div>
