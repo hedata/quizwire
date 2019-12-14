@@ -19,4 +19,11 @@ export class DataService {
   getLatestRawStream(context: any):Promise<any> {
     return this.httpClient.post('/services/stream/getlatestrawitems',context).toPromise();
   }
+  getLatestUserStreamItem(context: any):Promise<any> {
+    return this.httpClient.post('/services/stream/getlatestuserstreamitem',context).toPromise();
+  }
+
+  getUserStream(context: any):Promise<any> {
+    return this.httpClient.post('services/stream/getuserstream',context).toPromise();
+  }
 }

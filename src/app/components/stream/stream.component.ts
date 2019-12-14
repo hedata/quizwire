@@ -18,6 +18,7 @@ export class StreamComponent implements OnInit {
   version: string = environment.version;
   public loading: boolean = true;
   public streamItems: any = [];
+  public userStream : any;
   public fade: boolean = true;
   public language: String = 'en';
   private lastDate: any = new Date();
@@ -25,11 +26,31 @@ export class StreamComponent implements OnInit {
   @Input() activeComponentConfig: any;
   isActive: boolean = false;
 
-  ngOnChanges(changes: SimpleChanges) {
+  async ngOnChanges(changes: SimpleChanges) {
     if (this.activeComponentConfig.name === 'stream') {
       console.log('[SettingEntittyActive]');
       this.isActive = true;
-      this.loadData();
+      if(this.activeComponentConfig.params[0]) {
+         const userStreamId = this.activeComponentConfig.params[0];
+         const user = this.authenticationService.credentials;
+         //TODO get stream by id function
+         this.userStream = await this.dataService.getUserStream({
+           userSessionId: user.token,
+           language : this.language
+         })
+         this.loadData();
+      } else {
+        //get publicstream
+        const user = this.authenticationService.credentials;
+        console.log("[Creating USer Stream]",user);
+        const myStream = await this.dataService.getUserStream({
+          userSessionId: user.token,
+          language : this.language
+        })
+        console.log("[Stream] got stream: ",myStream);
+        //redirect to stream
+        this.router.navigate(['/' + this.activeComponentConfig.name+'/'+myStream._id]);
+      };
     } else {
       this.isActive = false;
     }
@@ -45,22 +66,21 @@ export class StreamComponent implements OnInit {
   ) {}
 
   intervall = 3400;
-  ngOnInit() {
-    console.log('[Stream] Init');
+  async ngOnInit() {
+    console.log('[Stream] Init',this.activeComponentConfig);
+    //first part of the url shall be id off the stream
     setInterval(this.loadData, this.intervall);
   }
-
   private loadData = async () => {
     const currentDate: any = new Date();
-    if (this.isActive) {
+    if (this.isActive && this.userStream) {
       //console.log("[Stream] loding data");
-      const countoldItems = this.streamItems.length;
-      const response = await this.dataService.getLatestRawStream({
-        lastUpdate: new Date(currentDate.getTime() - this.intervall),
-        limit: 1
+      const response = await this.dataService.getLatestUserStreamItem({
+        id : this.userStream._id,
+        lastSeenContentId : this.streamItems.length>0?this.streamItems[0].sourceId:null
       });
-      if (response.length > 0) {
-        const item = response[0];
+      if (response) {
+        const item = response;
         //add displayType and displayUrl
         this.addDisplayTypes(item);
         console.log(item.url);
@@ -76,10 +96,12 @@ export class StreamComponent implements OnInit {
 
         this.lastDate = currentDate;
         this.fade = false;
+        /*
         setTimeout(() => {
           //console.log("[Fade]")
           this.fade = true;
         }, 1000);
+        */
       } else {
         console.log('[Got no items]');
       }
