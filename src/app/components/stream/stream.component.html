@@ -3,20 +3,20 @@
     <div class="flex column fullwidth" *ngFor="let item of streamItems; let index = index">
       <!-- [ngClass]="{ new : index < 1 && fade === false }" -->
       <div class="new flex column card">
-        <div class="flex" *ngIf="item.display.displayType === 'youtube' || item.display.displayType === 'gfycat'">
-          <iframe width="100%" frameBorder="0" height="540px" [src]="item.display.displayUrl | safe"></iframe>
-        </div>
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank" class="flex column">
-          <div class="flex" *ngIf="item.display.displayType === 'image'">
-            <img *ngIf="item.display.displayUrl" style="width:100%" src="{{ item.display.displayUrl }}" />
-          </div>
-          <div class="flex column" *ngIf="item.display.displayType === 'imgur'">
-            <img style="width:100%" src="{{ item.display.displayUrl }}" />
-          </div>
           <div class="flex">
             <h2>{{ item.label }}</h2>
           </div>
+          <div class="flex" *ngIf="item.display.displayType === 'image'">
+            <img *ngIf="item.display.displayUrl" style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
+          </div>
+          <div class="flex column" *ngIf="item.display.displayType === 'imgur'">
+            <img style="width:100%;max-height:85vh"" src="{{ item.display.displayUrl }}" />
+          </div>
         </a>
+        <div class="flex" *ngIf="item.display.displayType === 'youtube' || item.display.displayType === 'gfycat'">
+          <iframe width="100%" frameBorder="0" height="540px" [src]="item.display.displayUrl | safe"></iframe>
+        </div>
 
         <div class="flex">
           <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
