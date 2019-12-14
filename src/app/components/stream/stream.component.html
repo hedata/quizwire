@@ -11,14 +11,14 @@
             <img *ngIf="item.display.displayUrl" style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
           </div>
           <div class="flex column" *ngIf="item.display.displayType === 'imgur'">
-            <img style="width:100%;max-height:85vh"" src="{{ item.display.displayUrl }}" />
+            <img style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
           </div>
         </a>
         <div class="flex" *ngIf="item.display.displayType === 'youtube' || item.display.displayType === 'gfycat'">
           <iframe width="100%" frameBorder="0" height="540px" [src]="item.display.displayUrl | safe"></iframe>
         </div>
 
-        <div class="flex">
+        <div class="flex" style="line-height:2.3em">
           <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
             Reddit
           </a>
@@ -30,6 +30,31 @@
           <b>{{ item.sourceData.data.subreddit }}</b>
 
           <span>{{ item.created_at | date: 'hh:mm:ss' }}</span>
+          <!-- rating buttons -->
+          <button
+           style = "width: 40px;right:45px;position:absolute"
+            class="btn btn-success form-control"
+            [disabled]="item.rating?true:false"
+            name="down"
+            type="button"
+            title="Dislike"
+            (click)="rate(0,item)"
+            ngDefaultControl
+          >
+            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+          </button>
+          <button
+           style = "width: 40px;right:0;position:absolute"
+            class="btn btn-success form-control"
+            [disabled]="item.rating?true:false"
+            name="up"
+            type="button"
+            title="Like"
+            (click)="rate(1,item)"
+            ngDefaultControl
+          >
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>

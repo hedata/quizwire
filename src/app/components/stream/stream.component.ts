@@ -20,6 +20,7 @@ export class StreamComponent implements OnInit {
   public streamItems: any = [];
   public userStream : any;
   public fade: boolean = true;
+  public user : any ;
   public language: String = 'en';
   private lastDate: any = new Date();
 
@@ -32,19 +33,19 @@ export class StreamComponent implements OnInit {
       this.isActive = true;
       if(this.activeComponentConfig.params[0]) {
          const userStreamId = this.activeComponentConfig.params[0];
-         const user = this.authenticationService.credentials;
+         this.user = this.authenticationService.credentials;
          //TODO get stream by id function
          this.userStream = await this.dataService.getUserStream({
-           userSessionId: user.token,
+           userSessionId: this.user.token,
            language : this.language
          })
          this.loadData();
       } else {
         //get publicstream
-        const user = this.authenticationService.credentials;
-        console.log("[Creating USer Stream]",user);
+        this.user = this.authenticationService.credentials;
+        console.log("[Creating USer Stream]",this.user);
         const myStream = await this.dataService.getUserStream({
-          userSessionId: user.token,
+          userSessionId: this.user.token,
           language : this.language
         })
         console.log("[Stream] got stream: ",myStream);
@@ -77,7 +78,7 @@ export class StreamComponent implements OnInit {
       //console.log("[Stream] loding data");
       const response = await this.dataService.getLatestUserStreamItem({
         id : this.userStream._id,
-        lastSeenContentId : this.streamItems.length>0?this.streamItems[0].sourceId:null
+        lastSeenContentId : this.streamItems.length>0?this.streamItems[0]._id:null
       });
       if (response) {
         const item = response;
@@ -87,7 +88,7 @@ export class StreamComponent implements OnInit {
         console.log(item.display);
         console.log(item);
         this.streamItems.unshift(item);
-        if (this.streamItems.length > 500) {
+        if (this.streamItems.length > 140) {
           this.streamItems.pop();
         }
         const diff = (currentDate - this.lastDate) / 1000;
@@ -147,4 +148,20 @@ export class StreamComponent implements OnInit {
     }
     return item;
   };
+
+  public rate = async (rating:Number,item:any)=> {
+    item.rating = rating;
+    const context = {
+      streamId : this.userStream._id,
+      extractedItemId : item._id,
+      rating : rating,
+      userSessionId: this.user.token
+    };
+    const resp = await this.dataService.rateItem(context);
+    console.log("[Rating] : ",resp);
+    if(rating === 0) {
+      //remove item from stream
+      this.streamItems = this.streamItems.filter((el:any)=>el._id !== item._id)
+    }
+  }
 }

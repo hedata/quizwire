@@ -26,4 +26,7 @@ export class DataService {
   getUserStream(context: any):Promise<any> {
     return this.httpClient.post('services/stream/getuserstream',context).toPromise();
   }
+  rateItem(context: any):Promise<any> {
+    return this.httpClient.post('/services/rating/rate',context).toPromise();
+  }
 }
