@@ -38,16 +38,37 @@ $green: #28a745;
 $teal: #20c997;
 $cyan: #17a2b8;
 
+$erichdark: rgb(5, 3, 36);
+/*
 $theme-colors: (
-  primary: $blue,
-  secondary: $gray-600,
+  background: (
+    dark: $erichdark,
+    light: $white
+  ),
+  primary: (
+    dark: $white,
+    light: $black
+  )
+  )
+  */
+$theme-colors: (
+  primary: $black,
+  secondary: $white,
   success: $green,
+  border: $gray-800,
   info: $cyan,
   warning: $yellow,
   danger: $red,
   light: $gray-100,
-  dark: $gray-800
+  dark: $gray-800,
+  background: $erichdark
 );
+/*
+@function theme-color($key: 'primary', $variant: 'dark') {
+  $map1 : map-get($theme-colors, $key);
+  $map2 : map-get($map1, $variant);
+  @return $map2;
+};*/
 
 // Use Bootstrap defaults for other variables, imported here so we can access all app variables in one place when used
 // in components.
