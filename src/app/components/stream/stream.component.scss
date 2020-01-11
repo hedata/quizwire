@@ -1,17 +1,6 @@
 @import "src/theme/theme-variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 
-.new {
-  background-color: rgb(5, 3, 36) !important;
-  color: white !important;
-}
-.landing_fullscreen {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
 .cardcontainer {
   //height: 100%;
   margin: auto;
@@ -26,14 +15,38 @@
   padding-top: 18px;
   padding-left: 3px;
   padding-right: 3px;
-  margin: auto;
   //background-color: rgba(0, 0, 0, 0.2);
 }
 .card {
   color: black;
-  background-color: white;
+  //background-color: white;
   margin-bottom: 15px;
-  padding: 10px;
+  //padding: 10px;
+  border-color: theme-color("secondary");
+}
+
+.card-header {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.card-footer {
+  font-size: 12px;
+}
+
+.card-header,
+.card-footer {
+  //color: white;
+  background-color: theme-color("secondary");
+}
+
+a.column:link {
+  //color: white;
+}
+
+a.column:hover {
+  text-decoration: none;
 }
 
 .landing {

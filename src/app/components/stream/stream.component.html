@@ -1,15 +1,18 @@
+
 <div class="componentView" *ngIf="isActive">
   <div class="cardcontainer">
+
     <div class="flex column fullwidth" *ngFor="let item of streamItems; let index = index">
       <!-- [ngClass]="{ new : index < 1 && fade === false }" -->
-      <div class="new flex column card">
+      <div class="flex column card">
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank" class="flex column">
-          <div class="flex">
-            <h2>{{ item.label }}</h2>
+          <div class="card-header">
+            {{ item.label }}
           </div>
           <div class="flex" *ngIf="item.display.displayType === 'image'">
-            <img *ngIf="item.display.displayUrl" style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
+            <img *ngIf="item.display.displayUrl" class="card-img-top" style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
           </div>
+
           <div class="flex column" *ngIf="item.display.displayType === 'imgur'">
             <img style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
           </div>
@@ -18,43 +21,45 @@
           <iframe width="100%" frameBorder="0" height="540px" [src]="item.display.displayUrl | safe"></iframe>
         </div>
 
-        <div class="flex" style="line-height:2.3em">
-          <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
-            Reddit
-          </a>
-          <a *ngIf="item.url !== item.sourceData.data.permalink" href="{{ item.url }}" target="_blank">
-            Source
-          </a>
-          <!--{{ index + 1 }} / {{ streamItems.length }}-->
+        <div class="card-footer">
+          <div class="flex" style="line-height:2.3em">
+            <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank">
+              Reddit
+            </a>
+            <a *ngIf="item.url !== item.sourceData.data.permalink" href="{{ item.url }}" target="_blank">
+              Source
+            </a>
+            <!--{{ index + 1 }} / {{ streamItems.length }}-->
 
-          <b>{{ item.sourceData.data.subreddit }}</b>
+            <b>{{ item.sourceData.data.subreddit }}</b>
 
-          <span>{{ item.created_at | date: 'hh:mm:ss' }}</span>
-          <!-- rating buttons -->
-          <button
-           style = "width: 40px;right:45px;position:absolute"
-            class="btn btn-success form-control"
-            [disabled]="item.rating?true:false"
-            name="down"
-            type="button"
-            title="Dislike"
-            (click)="rate(0,item)"
-            ngDefaultControl
-          >
-            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-          </button>
-          <button
-           style = "width: 40px;right:0;position:absolute"
-            class="btn btn-success form-control"
-            [disabled]="item.rating?true:false"
-            name="up"
-            type="button"
-            title="Like"
-            (click)="rate(1,item)"
-            ngDefaultControl
-          >
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-          </button>
+            <span>{{ item.created_at | date: 'hh:mm:ss' }}</span>
+            <!-- rating buttons -->
+            <button
+             style = "width: 40px;right:45px;position:absolute"
+              class="btn btn-success form-control"
+              [disabled]="item.rating?true:false"
+              name="down"
+              type="button"
+              title="Dislike"
+              (click)="rate(0,item)"
+              ngDefaultControl
+            >
+              <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+            </button>
+            <button
+             style = "width: 40px;right:0;position:absolute"
+              class="btn btn-success form-control"
+              [disabled]="item.rating?true:false"
+              name="up"
+              type="button"
+              title="Like"
+              (click)="rate(1,item)"
+              ngDefaultControl
+            >
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
