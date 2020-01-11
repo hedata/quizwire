@@ -18,9 +18,9 @@ export class StreamComponent implements OnInit {
   version: string = environment.version;
   public loading: boolean = true;
   public streamItems: any = [];
-  public userStream : any;
+  public userStream: any;
   public fade: boolean = true;
-  public user : any ;
+  public user: any;
   public language: String = 'en';
   private lastDate: any = new Date();
 
@@ -31,27 +31,26 @@ export class StreamComponent implements OnInit {
     if (this.activeComponentConfig.name === 'stream') {
       console.log('[SettingEntittyActive]');
       this.isActive = true;
-      if(this.activeComponentConfig.params[0]) {
-         const userStreamId = this.activeComponentConfig.params[0];
-         this.user = this.authenticationService.credentials;
-         //TODO get stream by id function
-         this.userStream = await this.dataService.getUserStream({
-           userSessionId: this.user.token,
-           language : this.language
-         })
-         this.loadData();
-      } else {
-        //get publicstream
+      if (this.activeComponentConfig.params[0]) {
+        const userStreamId = this.activeComponentConfig.params[0];
         this.user = this.authenticationService.credentials;
-        console.log("[Creating USer Stream]",this.user);
-        const myStream = await this.dataService.getUserStream({
+        //TODO get stream by id function
+        this.userStream = await this.dataService.getStreambyId({
+          id: userStreamId
+        });
+        console.log('[Stream]', this.userStream);
+        this.loadData();
+      } else {
+        this.user = this.authenticationService.credentials;
+        console.log('[Creating User Stream]', this.user);
+        const myStream = await this.dataService.createUserStream({
           userSessionId: this.user.token,
-          language : this.language
-        })
-        console.log("[Stream] got stream: ",myStream);
+          language: this.language
+        });
+        console.log('[Stream] got stream: ', myStream);
         //redirect to stream
-        this.router.navigate(['/' + this.activeComponentConfig.name+'/'+myStream._id]);
-      };
+        this.router.navigate(['/' + this.activeComponentConfig.name + '/' + myStream._id]);
+      }
     } else {
       this.isActive = false;
     }
@@ -68,7 +67,7 @@ export class StreamComponent implements OnInit {
 
   intervall = 3400;
   async ngOnInit() {
-    console.log('[Stream] Init',this.activeComponentConfig);
+    console.log('[Stream] Init', this.activeComponentConfig);
     //first part of the url shall be id off the stream
     setInterval(this.loadData, this.intervall);
   }
@@ -76,9 +75,9 @@ export class StreamComponent implements OnInit {
     const currentDate: any = new Date();
     if (this.isActive && this.userStream) {
       //console.log("[Stream] loding data");
-      const response = await this.dataService.getLatestUserStreamItem({
-        id : this.userStream._id,
-        lastSeenContentId : this.streamItems.length>0?this.streamItems[0]._id:null
+      const response = await this.dataService.getLatestStreamItem({
+        id: this.userStream._id,
+        lastSeenContentId: this.streamItems.length > 0 ? this.streamItems[0]._id : null
       });
       if (response) {
         const item = response;
@@ -149,19 +148,19 @@ export class StreamComponent implements OnInit {
     return item;
   };
 
-  public rate = async (rating:Number,item:any)=> {
+  public rate = async (rating: Number, item: any) => {
     item.rating = rating;
     const context = {
-      streamId : this.userStream._id,
-      extractedItemId : item._id,
-      rating : rating,
+      streamId: this.userStream._id,
+      extractedItemId: item._id,
+      rating: rating,
       userSessionId: this.user.token
     };
     const resp = await this.dataService.rateItem(context);
-    console.log("[Rating] : ",resp);
-    if(rating === 0) {
+    console.log('[Rating] : ', resp);
+    if (rating === 0) {
       //remove item from stream
-      this.streamItems = this.streamItems.filter((el:any)=>el._id !== item._id)
+      this.streamItems = this.streamItems.filter((el: any) => el._id !== item._id);
     }
-  }
+  };
 }
