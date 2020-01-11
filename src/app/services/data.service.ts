@@ -16,17 +16,19 @@ export class DataService {
     return this.httpClient.post('/services/entity/details', context).toPromise();
   }
 
-  getLatestRawStream(context: any):Promise<any> {
-    return this.httpClient.post('/services/stream/getlatestrawitems',context).toPromise();
+  getLatestRawStream(context: any): Promise<any> {
+    return this.httpClient.post('/services/stream/getlatestrawitems', context).toPromise();
   }
-  getLatestUserStreamItem(context: any):Promise<any> {
-    return this.httpClient.post('/services/stream/getlatestuserstreamitem',context).toPromise();
+  getLatestStreamItem(context: any): Promise<any> {
+    return this.httpClient.post('/services/stream/items/latest', context).toPromise();
   }
-
-  getUserStream(context: any):Promise<any> {
-    return this.httpClient.post('/services/stream/getuserstream',context).toPromise();
+  createUserStream(context: any): Promise<any> {
+    return this.httpClient.post('/services/stream/user/create', context).toPromise();
   }
-  rateItem(context: any):Promise<any> {
-    return this.httpClient.post('/services/rating/rate',context).toPromise();
+  getStreambyId(context: any): Promise<any> {
+    return this.httpClient.post('/services/stream/getstreambyid', context).toPromise();
+  }
+  rateItem(context: any): Promise<any> {
+    return this.httpClient.post('/services/rating/rate', context).toPromise();
   }
 }
