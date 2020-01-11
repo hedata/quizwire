@@ -160,7 +160,7 @@ export class StreamComponent implements OnInit {
     console.log('[Rating] : ', resp);
     if (rating === 0) {
       //remove item from stream
-      this.streamItems = this.streamItems.filter((el: any) => el._id !== item._id);
+      //this.streamItems = this.streamItems.filter((el: any) => el._id !== item._id);
     }
   };
 }
