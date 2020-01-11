@@ -87,7 +87,7 @@ export class AuthenticationService {
       };
       this.setCredentials(data, true);
 
-      return false;
+      return true;
     }
     return !!this.credentials;
   }
