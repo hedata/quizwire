@@ -1,8 +1,10 @@
-
 <div class="componentView" *ngIf="isActive">
   <div class="cardcontainer">
-
-    <div class="flex column fullwidth" *ngFor="let item of streamItems; let index = index">
+    <div
+      class="flex column fullwidth"
+      [ngClass]="{ downvoted: item.rating == 0, upvoted: item.rating == 1 }"
+      *ngFor="let item of streamItems; let index = index"
+    >
       <!-- [ngClass]="{ new : index < 1 && fade === false }" -->
       <div class="flex column card">
         <a href="https://reddit.com{{ item.sourceData.data.permalink }}" target="_blank" class="flex column">
@@ -10,7 +12,12 @@
             {{ item.label }}
           </div>
           <div class="flex" *ngIf="item.display.displayType === 'image'">
-            <img *ngIf="item.display.displayUrl" class="card-img-top" style="width:100%;max-height:85vh" src="{{ item.display.displayUrl }}" />
+            <img
+              *ngIf="item.display.displayUrl"
+              class="card-img-top"
+              style="width:100%;max-height:85vh"
+              src="{{ item.display.displayUrl }}"
+            />
           </div>
 
           <div class="flex column" *ngIf="item.display.displayType === 'imgur'">
@@ -36,28 +43,26 @@
             <span>{{ item.created_at | date: 'hh:mm:ss' }}</span>
             <!-- rating buttons -->
             <button
-             style = "width: 40px;right:45px;position:absolute"
+              style="width: 40px;right:45px;position:absolute"
               class="btn btn-success form-control"
-              [disabled]="item.rating?true:false"
               name="down"
               type="button"
               title="Dislike"
-              (click)="rate(0,item)"
+              (click)="rate(0, item)"
               ngDefaultControl
             >
-              <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+              <i [ngClass]="{ downvotedIcon: item.rating == 0 }" class="fa fa-thumbs-down" aria-hidden="true"></i>
             </button>
             <button
-             style = "width: 40px;right:0;position:absolute"
+              style="width: 40px;right:0;position:absolute"
               class="btn btn-success form-control"
-              [disabled]="item.rating?true:false"
               name="up"
               type="button"
               title="Like"
-              (click)="rate(1,item)"
+              (click)="rate(1, item)"
               ngDefaultControl
             >
-              <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+              <i [ngClass]="{ upvotedIcon: item.rating == 1 }" class="fa fa-thumbs-up" aria-hidden="true"></i>
             </button>
           </div>
         </div>
