@@ -82,7 +82,9 @@ export class StreamComponent implements OnInit {
       if (response) {
         const item = response;
         //add displayType and displayUrl
-        this.addDisplayTypes(item);
+        if (item.sourcecrawler === 'reddit') {
+          this.addDisplayTypes(item);
+        }
         console.log(item.url);
         console.log(item.display);
         console.log(item);
