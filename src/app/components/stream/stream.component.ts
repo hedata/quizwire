@@ -82,7 +82,9 @@ export class StreamComponent implements OnInit {
       if (response) {
         const item = response;
         //add displayType and displayUrl
-        this.addDisplayTypes(item);
+        if (item.sourcecrawler === 'reddit') {
+          this.addDisplayTypes(item);
+        }
         console.log(item.url);
         console.log(item.display);
         console.log(item);
@@ -160,7 +162,7 @@ export class StreamComponent implements OnInit {
     console.log('[Rating] : ', resp);
     if (rating === 0) {
       //remove item from stream
-      this.streamItems = this.streamItems.filter((el: any) => el._id !== item._id);
+      //this.streamItems = this.streamItems.filter((el: any) => el._id !== item._id);
     }
   };
 }
