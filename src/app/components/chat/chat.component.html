@@ -98,7 +98,7 @@
             type="text"
             style="height:44px"
             name="'chatMessage'"
-            placeholder="Type here"
+            placeholder="Message the bot - hit enter to submit"
             (keyup.enter)="queryBot()"
             autocomplete="off"
             [(ngModel)]="chatMessage"
@@ -111,7 +111,7 @@
           -->
 
           <button
-            style="max-width:50px"
+            style="max-width:50px;background:white"
             *ngIf="!configModel.autorecord && configModel.recordsupported"
             class="btn btn-success form-control"
             type="checkbox"

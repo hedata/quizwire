@@ -15,7 +15,7 @@ export class ShellComponent implements OnInit {
     this.route.url.pipe().subscribe(url => {
       console.log('[Shell] - ', url);
       const activeComponentConfig: any = {
-        name: '',
+        name: 'chat',
         params: []
       };
 
