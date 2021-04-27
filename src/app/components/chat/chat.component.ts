@@ -209,9 +209,10 @@ export class ChatComponent implements OnInit {
   };
   getShareUrl = (url: any) => {
     if (!url) return '';
-    let retStr = url.replace('https://reboting.com/services/image/', '');
+    const baseUrL = "quizwire.reboting.com"
+    let retStr = url.replace('https://'+baseUrL+'/services/image/', '');
     retStr = retStr.replace('.png', '');
-    retStr = 'https://reboting.com/highscore/' + retStr;
+    retStr = 'https://'+baseUrL+'/highscore/' + retStr;
     return retStr;
   };
 
