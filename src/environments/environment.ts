@@ -9,7 +9,8 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '',
-  defaultLanguage: 'en-US',
+  //serverUrl: 'https://quizwire.local.reboting.com',
+  defaultLanguage: 'de-UDE',
   supportedLanguages: ['en-US', 'de-DE']
 };
 
