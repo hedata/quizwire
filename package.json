@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.4",
-    "@angular/cli": "~7.1.4",
+    "@angular/cli": "~15.2.7",
     "@angular/compiler-cli": "^7.2.15",
     "@angular/language-service": "^7.2.15",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
